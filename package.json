@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "ts:init": "tsc --init",
+    "start": "serve",
+    "build": "webpack --watch --mode=production"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "build": "^0.1.4",
     "serve": "^14.2.1"
   },
   "devDependencies": {
