@@ -1,7 +1,9 @@
 import { userData } from "./components/data/userData";
-import { Sidebar } from "./components/indexExport";
+import { SidebarRight, Sidebar} from "./components/indexExport";
+import "./components/indexExport"
 
-class Dashboard extends HTMLElement{
+
+class AppContainer extends HTMLElement{
 
     constructor(){
         super();
@@ -16,12 +18,12 @@ class Dashboard extends HTMLElement{
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
             <my-sidebar></my-sidebar>
-            <p>Placeholder</p>
+            <sidebar-right></sidebar-right>
             `
             console.log('mamaguevo')
 
         }}
     }
 
-customElements.define("dashboard-1", Dashboard);
+customElements.define("app-container", AppContainer);
 
