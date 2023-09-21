@@ -1,3 +1,5 @@
+import { userData } from "./components/data/userData";
+
 class Dashboard extends HTMLElement{
 
     constructor(){
