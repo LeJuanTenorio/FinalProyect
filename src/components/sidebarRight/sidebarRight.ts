@@ -13,8 +13,8 @@ class SidebarRight extends HTMLElement{
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
             <section>
-            <p> jueputa </p>
-            <section>
+            <p>placeholder</p>
+            </section>
             `
             console.log('SidebarRight')
         }}

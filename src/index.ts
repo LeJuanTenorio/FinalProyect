@@ -1,6 +1,7 @@
 import { userData } from "./components/data/userData";
-import { Sidebar } from "./components/indexExport";
-import { SidebarRight } from "./components/indexExport"
+import { SidebarRight, Sidebar} from "./components/indexExport";
+import "./components/indexExport"
+
 
 class AppContainer extends HTMLElement{
 
