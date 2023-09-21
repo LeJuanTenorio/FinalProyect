@@ -1,18 +1,16 @@
 export const userData = [
 
-    {
-        currentUser:
-        {"id": "4324235"}
-    },
 
     {
         "name": "Julian",
-        "id": "4324235"
+        "id": "4324235",
+        "currentUser":"yes"
     },
 
     {
         "name": "Bob",
-        "id": "765456"
+        "id": "765456",
+        "currentUser":"no"
     }
 
 ];
