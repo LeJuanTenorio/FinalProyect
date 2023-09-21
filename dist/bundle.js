@@ -1,1 +1,1 @@
-(()=>{"use strict";console.log("hello world")})();
+(()=>{"use strict";class e extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"})}connectedCallback(){this.render()}render(){this.shadowRoot&&(this.shadowRoot.innerHTML="\n            <p>Placeholder</p>\n            ",console.log("mamaguevo"))}}customElements.define("dashboard-1",e)})();
