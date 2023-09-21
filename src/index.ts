@@ -1,4 +1,5 @@
 import { userData } from "./components/data/userData";
+import { Sidebar } from "./components/indexExport";
 
 class Dashboard extends HTMLElement{
 
@@ -14,6 +15,7 @@ class Dashboard extends HTMLElement{
     render(){
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
+            <my-sidebar></my-sidebar>
             <p>Placeholder</p>
             `
             console.log('mamaguevo')

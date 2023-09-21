@@ -1,4 +1,4 @@
-class sidebar extends HTMLElement {
+class Sidebar extends HTMLElement {
     constructor(){
         super();
         this.attachShadow({mode: "open"});
@@ -24,5 +24,6 @@ class sidebar extends HTMLElement {
             }
         }
     }
-customElements.define("my-sidebar",sidebar);
-export default sidebar;
+
+customElements.define("my-sidebar", Sidebar);
+export default Sidebar;
