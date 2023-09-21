@@ -21,6 +21,7 @@ class Sidebar extends HTMLElement {
                 </ul>
             </div>
                 `
+                console.log("sidebarLeft")
             }
         }
     }
