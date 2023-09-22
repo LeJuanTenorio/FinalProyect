@@ -43,8 +43,8 @@ class ReviewContainer extends HTMLElement {
 
   connectedCallback() {
 
-    this.logo_title = seriesData.logo_title;
-    this.background = seriesData.background;
+    this.logo_title = this.logo_title;
+    this.background = this.background;
 
     this.render();
   }

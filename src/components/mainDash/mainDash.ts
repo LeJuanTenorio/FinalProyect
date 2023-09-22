@@ -1,4 +1,5 @@
-import { SidebarRight } from "../indexExport";
+import { SidebarRight, Feed } from "../indexExport";
+
 
 class DashMain extends HTMLElement{
 
@@ -14,7 +15,8 @@ class DashMain extends HTMLElement{
     render(){
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
-            
+
+                <main-feed></main-feed>
                 <sidebar-right></sidebar-right>
             `
             console.log("mainDash")
