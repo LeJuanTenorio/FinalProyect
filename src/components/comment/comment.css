@@ -30,6 +30,12 @@
     margin-right: 2%;
 }
 
+.poster {
+    width: 20%;
+    height: 20%;
+    margin-left: 70%;
+}
+
 #comment-text {
     width: 75%;
     padding: 2%;
