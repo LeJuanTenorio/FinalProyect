@@ -1,6 +1,5 @@
 import ReviewContainerStyle from "./reviewContainer.css";
-
-import seriesData from "../data/seriesData.ts";
+import { seriesData } from "../data/seriesData";
 
 export enum Attribute {
   "id" = "id",
@@ -44,8 +43,8 @@ class ReviewContainer extends HTMLElement {
 
   connectedCallback() {
 
-    this.logo_title = data.logo_title;
-    this.background = data.background;
+    this.logo_title = seriesData.logo_title;
+    this.background = seriesData.background;
 
     this.render();
   }

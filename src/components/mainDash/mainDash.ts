@@ -1,4 +1,3 @@
-class DashMain extends HTMLElement{
 import { SidebarRight } from "../indexExport";
 
 class DashMain extends HTMLElement{

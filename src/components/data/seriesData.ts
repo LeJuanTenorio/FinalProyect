@@ -1,4 +1,4 @@
-const seriesData = [
+export const seriesData = [
     {
         "id": 1,
         "title": "The Office",
