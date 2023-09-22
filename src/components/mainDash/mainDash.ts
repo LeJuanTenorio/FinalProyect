@@ -1,3 +1,6 @@
+import { SidebarRight } from "../indexExport";
+import ".components/indexExport"
+
 class MainDash extends HTMLElement{
 
     constructor(){
@@ -12,11 +15,12 @@ class MainDash extends HTMLElement{
     render(){
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
+                <sidebar-right></sidebar-right>
             `
-            console.log('mainDash')
 
         }}
     }
 
 customElements.define("main-dash", MainDash);
+export default MainDash;
 
