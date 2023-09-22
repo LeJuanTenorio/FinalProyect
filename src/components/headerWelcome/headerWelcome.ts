@@ -18,7 +18,9 @@ class HeaderWelcome extends HTMLElement{
             this.shadowRoot.innerHTML = `
             <div class="container">
             <p>welcome</p>
-            <user name="${userData[0].name}"></user>
+            <user-info name="${userData[0].name}"
+            img="${userData[0].img}"></user-info>
+
             </div>
 
             <style>
