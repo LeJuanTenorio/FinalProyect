@@ -12,6 +12,7 @@ class CommentFeed extends HTMLElement{
     render(){
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
+            <p>commentfeed<p>
             `
             console.log("commentfeed")
         }}

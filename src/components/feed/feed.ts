@@ -15,10 +15,15 @@ class Feed extends HTMLElement{
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
             <section class="feed">
-            <header-welcome></header-welcome>
-            <review-container></review-container>
-            <comment-feed></comment-feed>
-            <section class="feed">
+
+                <header-welcome></header-welcome>
+
+                <div class="lowerFeed">
+                    <review-container></review-container>
+                    <comment-feed></comment-feed>
+                </div>
+
+            </section>
             
             <style>
             ${style}
