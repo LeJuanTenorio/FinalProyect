@@ -19,19 +19,9 @@ export enum Attribute {
     connectedCallback() {
       this.poster = this.getAttribute(Attribute.poster) || "";
   
-      this.mount
+      this.render();
     }
   
-    mount(){
-        this.render();
-    
-        const btn = this.shadowRoot?.querySelector('button');
-        
-        btn?.addEventListener("click",()=>{
-            
-        })
-    }
-
     render() {
       if (this.shadowRoot) {
         this.shadowRoot.innerHTML = `
