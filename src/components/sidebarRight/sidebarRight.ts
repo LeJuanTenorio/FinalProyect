@@ -1,10 +1,11 @@
 import { seriesData } from "../data/seriesData";
-import { Poster } from "../indexExport";
+import { Poster, Modal } from "../indexExport"; // Import your Modal component
 import { Attribute } from "../seriesPoster/poster";
 import style from "./sidebarRight.css";
 
 class SidebarRight extends HTMLElement {
   poster: Poster[] = [];
+  modal: Modal;
 
   constructor() {
     super();
@@ -13,8 +14,17 @@ class SidebarRight extends HTMLElement {
     seriesData.forEach((seriesItem) => {
       const posterElement = this.ownerDocument.createElement("poster-img") as Poster;
       posterElement.setAttribute(Attribute.poster, seriesItem.poster);
+
+      posterElement.addEventListener("click", () => {
+        this.modal.show();
+        console.log("modal");
+      });
+
       this.poster.push(posterElement);
     });
+
+    // Create an instance of the Modal component
+    this.modal = this.ownerDocument.createElement("my-modal") as Modal;
   }
 
   connectedCallback() {
@@ -24,27 +34,24 @@ class SidebarRight extends HTMLElement {
   render() {
     if (this.shadowRoot) {
       this.shadowRoot.innerHTML = `
-            <section class="container">
+        <section class="container">
+          <div class="trailerContainer">
+            <h1>Latest Trailer</h1>
+          </div>
 
-                <div class="trailerContainer">
-                <h1>Latest Trailer</h1>
-                </div>
+          <div class="favoriteContainer">
+            <h1>Favorite Shows</h1>
+          </div>
 
-                <div class="favoriteContainer">
-    
-                <h1>Favorite Shows</h1>
-                </div>
-
-                <div class="friendContainer">
-                <h1>Friends</h1>
-                </div>
-
-            </section>
-
-            <style>
-            ${style}
-            </style>
-            `;
+          <div class="friendContainer">
+            <h1>Friends</h1>
+          </div>
+        </section>
+        
+        <style>
+          ${style}
+        </style>
+      `;
 
       const trailerContainer = this.shadowRoot.querySelector(".trailerContainer");
       const favoriteContainer = this.shadowRoot.querySelector(".favoriteContainer");
@@ -54,6 +61,8 @@ class SidebarRight extends HTMLElement {
         favoriteContainer?.appendChild(posterElement);
       });
 
+      favoriteContainer?.appendChild(this.modal);
+
       console.log("SidebarRight");
     }
   }
@@ -62,4 +71,5 @@ class SidebarRight extends HTMLElement {
 if (!customElements.get("sidebar-right")) {
   customElements.define("sidebar-right", SidebarRight);
 }
+
 export default SidebarRight;
