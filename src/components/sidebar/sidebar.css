@@ -1,12 +1,15 @@
+@media screen and (min-width: 769px) {
+    /* Estilos para pantallas grandes */
 .sidebar {
-    width: 250px;
+    width: 8%;
     height: 100%;
-    background-color: #333;
+    background-color: white;
     position: fixed;
     top: 0;
     left: 0;
-    padding: 20px;
-    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
 
 .sidebar ul {
@@ -15,16 +18,22 @@
 }
 
 .sidebar ul li {
-    margin-bottom: 10px;
+    margin: 10%;
+    margin-right: 20%;
 }
 
 .sidebar a {
     text-decoration: none;
-    color: #fff;
+    color: #00171F;
 }
 
-/* Estilos para el contenido principal */
-.content {
-    margin-left: 270px; /* Ancho de la barra de navegación + espacio de margen */
-    padding: 20px;
+.sidebar img {
+    height: 80%;
+    width: 80%;
+    padding: 20%;
 }
+}
+
+@media screen and (max-width: 768px) {
+    /* Estilos para pantallas pequeñas */
+  }

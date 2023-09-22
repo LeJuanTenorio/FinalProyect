@@ -1,4 +1,4 @@
-class DashMain extends HTMLElement{
+class MainDash extends HTMLElement{
 
     constructor(){
         super();
@@ -12,7 +12,6 @@ class DashMain extends HTMLElement{
     render(){
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
-                
             `
             console.log("mainDash")
         }}
