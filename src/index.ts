@@ -24,14 +24,10 @@ class AppContainer extends HTMLElement{
     
             <section class="appContainer">
             <my-sidebar></my-sidebar>
-<<<<<<< HEAD
             <sidebar-right class="right-center"></sidebar-right>
             <section>
+            
 
-=======
-            <sidebar-right></sidebar-right>
-            <review-container></review-container>
->>>>>>> 0c3ac89df1a2c9af25a5e84ee30c244ff6d25a67
             `
             console.log('holi')
 

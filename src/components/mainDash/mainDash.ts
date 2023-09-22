@@ -1,4 +1,4 @@
-class MainDash extends HTMLElement{
+class DashMain extends HTMLElement{
 
     constructor(){
         super();
