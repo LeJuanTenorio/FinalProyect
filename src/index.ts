@@ -19,8 +19,9 @@ class AppContainer extends HTMLElement{
             this.shadowRoot.innerHTML = `
             <my-sidebar></my-sidebar>
             <sidebar-right></sidebar-right>
+            <review-container></review-container>
             `
-            console.log('mamaguevo')
+            console.log('holi')
 
         }}
     }
