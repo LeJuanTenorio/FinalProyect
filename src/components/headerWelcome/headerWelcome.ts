@@ -17,14 +17,14 @@ class HeaderWelcome extends HTMLElement{
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
             <div class="container">
+            <user-info img="${userData[0].img}"></user-info>
             
-                
-                
             <div class="containerMessage">
-               <user-info img="${userData[0].img}"></user-info><user-info name="${userData[0].name}" img=""></user-info>  
+                <user-info name="${userData[0].name}" img=""></user-info> 
+                <h1>What's up!</h1>   
             </div>
 
-            <h1>What's up!</h1>
+            
 
             </div>
 
