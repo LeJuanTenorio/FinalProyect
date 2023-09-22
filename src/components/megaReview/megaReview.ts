@@ -1,12 +1,15 @@
 import { ReviewContainer} from "../indexExport";
-import styles from "./megarReview.css"
+import styles from "./megaReview.css"
 
 class MegaReview extends HTMLElement{
+
+    reviews: ReviewContainer[] = [];
 
     constructor(){
         super();
         this.attachShadow({mode:"open"});
     }
+    
 
     connectedCallback(){
         this.render();

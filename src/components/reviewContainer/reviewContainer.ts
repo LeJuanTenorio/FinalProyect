@@ -2,9 +2,9 @@ import ReviewContainerStyle from "./reviewContainer.css";
 import { seriesData } from "../data/seriesData";
 
 export enum Attribute {
-  "id" = "id",
-  "logo_title" = "logo_title",
-  "background" = "background",
+  id = "id",
+  logo_title = "logo_title",
+  background = "background",
 }
 
 class ReviewContainer extends HTMLElement {
@@ -12,28 +12,7 @@ class ReviewContainer extends HTMLElement {
   background?: string;
 
   static get observedAttributes() {
-    const attrs: Record<Attribute, null> = {
-      id: null,
-      logo_title: null,
-      background: null,
-    };
-    return Object.keys(attrs);
-  }
-
-  attributeChangedCallback(
-    propName: Attribute,
-    oldValue: string | undefined,
-    newValue: string | undefined
-  ) {
-    switch (propName) {
-      case Attribute.id:
-        //this.id = newValue ? Number(newValue) : undefined;
-        break;
-
-      default:
-        this[propName] = newValue;
-        break;
-    }
+    return [Attribute.id, Attribute.logo_title, Attribute.background];
   }
 
   constructor() {
@@ -42,9 +21,8 @@ class ReviewContainer extends HTMLElement {
   }
 
   connectedCallback() {
-
-    this.logo_title = this.logo_title;
-    this.background = this.background;
+    this.logo_title = this.getAttribute(Attribute.logo_title) || "";
+    this.background = this.getAttribute(Attribute.background) || "";
 
     this.render();
   }
@@ -52,13 +30,11 @@ class ReviewContainer extends HTMLElement {
   render() {
     if (this.shadowRoot) {
       this.shadowRoot.innerHTML = `
-        <h1>${this.background}</h1>
-        
+        <h1>${this.logo_title}</h1>
+        <img src="${this.background}">
         <style>
           ${ReviewContainerStyle}
         </style>
-        
-        
       `;
       console.log("reviewContainer");
     }
