@@ -30,8 +30,7 @@ export enum Attribute {
       if (this.shadowRoot) {
         this.shadowRoot.innerHTML = `
           <h1>${this.name}</h1>
-          <img src="${this.img}" onerror="this.style.display='none';">
-          
+          <img class="img" src="${this.img}" onerror="this.style.display='none';">
           <style>
           ${style}
           </style>
