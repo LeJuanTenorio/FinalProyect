@@ -1,3 +1,5 @@
+import style from "./user.css"
+
 export enum Attribute {
     id = "id",
     name = "name",
@@ -28,8 +30,10 @@ export enum Attribute {
       if (this.shadowRoot) {
         this.shadowRoot.innerHTML = `
           <h1>${this.name}</h1>
-          <img src="${this.img}">
+          <img src="${this.img}" onerror="this.style.display='none';">
+          
           <style>
+          ${style}
           </style>
         `;
       }

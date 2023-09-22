@@ -15,7 +15,6 @@ class SidebarRight extends HTMLElement{
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
             <section>
-            <p>placeholder</p>
             </section>
 
             <style>
