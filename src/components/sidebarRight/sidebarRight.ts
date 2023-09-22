@@ -11,9 +11,7 @@ class SidebarRight extends HTMLElement {
     this.attachShadow({ mode: "open" });
 
     seriesData.forEach((seriesItem) => {
-      const posterElement = this.ownerDocument.createElement(
-        "poster-img"
-      ) as Poster;
+      const posterElement = this.ownerDocument.createElement("poster-img") as Poster;
       posterElement.setAttribute(Attribute.poster, seriesItem.poster);
       this.poster.push(posterElement);
     });
@@ -48,10 +46,8 @@ class SidebarRight extends HTMLElement {
             </style>
             `;
 
-      const trailerContainer =
-        this.shadowRoot.querySelector(".trailerContainer");
-      const favoriteContainer =
-        this.shadowRoot.querySelector(".favoriteContainer");
+      const trailerContainer = this.shadowRoot.querySelector(".trailerContainer");
+      const favoriteContainer = this.shadowRoot.querySelector(".favoriteContainer");
       const friendContainer = this.shadowRoot.querySelector(".friendContainer");
 
       this.poster.forEach((posterElement) => {
