@@ -19,7 +19,7 @@ class Comment extends HTMLElement{
             </style>
             <p>comment</p>
             <div id="comments-container"</div>
-
+            <img class="poster" src="https://www.themoviedb.org/t/p/original/iSZAmDQHLRv0xXmpNRkizcPLanW.jpg">
             <p>I have loved this series, it blows my mind how time travel is and how intriguing the characters are. It's a bit confusing.</p>
             <hr></hr>
             <form id="comment-form">
