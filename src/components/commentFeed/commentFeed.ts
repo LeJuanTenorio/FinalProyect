@@ -1,4 +1,4 @@
-import CommentStyle from "./commentFeed.css"
+import CommentFeedStyle from "./commentFeed.css"
 
 class CommentFeed extends HTMLElement{
 
@@ -15,15 +15,9 @@ class CommentFeed extends HTMLElement{
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
             <style>
-            ${CommentStyle}
+            ${CommentFeedStyle}
             </style>
-            <p>comment</p>
-            <div id="comments-container"</div>
-            
-            <form id="comment-form">
-            <textarea id="comment-text" placeholder="What do you think of the show?"></textarea>
-            <button type="submit">Send</button>
-            </form>
+            <my-comment></my-comment>
             `
             console.log("commentfeed")
         }}
