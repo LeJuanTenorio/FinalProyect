@@ -21,10 +21,9 @@ class AppContainer extends HTMLElement{
             <style>
             ${styles}
             </style>
-    
             
-
-            <section class="appContainer">
+            <main-dash></main-dash>
+            <section class="appContaineer">
             <my-sidebar></my-sidebar>
             <sidebar-right class="right-center"></sidebar-right>
             <section>
