@@ -1,5 +1,5 @@
 import { userData } from "./components/data/userData";
-import { SidebarRight, Sidebar} from "./components/indexExport";
+import { SidebarRight, Sidebar, DashMain} from "./components/indexExport";
 import "./components/indexExport"
 import styles from "./styles.css"
 
@@ -22,12 +22,11 @@ class AppContainer extends HTMLElement{
             ${styles}
             </style>
     
-            
-
             <section class="appContainer">
             <my-sidebar></my-sidebar>
             <sidebar-right class="right-center"></sidebar-right>
             <section>
+
             `
             console.log('mamaguevo')
 

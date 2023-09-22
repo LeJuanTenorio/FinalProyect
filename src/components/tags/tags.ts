@@ -1,4 +1,4 @@
-class DashMain extends HTMLElement{
+class Tags extends HTMLElement{
 
     constructor(){
         super();
@@ -12,12 +12,10 @@ class DashMain extends HTMLElement{
     render(){
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
-                
             `
-            console.log("mainDash")
+            console.log('tags')
         }}
     }
 
-customElements.define("main-dash", DashMain);
-export default DashMain;
-
+customElements.define("tags-genre", Tags);
+export default Tags;
