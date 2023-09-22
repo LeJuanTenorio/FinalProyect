@@ -19,7 +19,7 @@ class Feed extends HTMLElement{
                 <header-welcome></header-welcome>
 
                 <div class="lowerFeed">
-                    <review-container></review-container>
+                    <mega-review></mega-review>
                     <comment-feed></comment-feed>
                 </div>
 
