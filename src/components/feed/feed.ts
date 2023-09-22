@@ -1,3 +1,5 @@
+import style from "./feed.css"
+
 class Feed extends HTMLElement{
 
     constructor(){
@@ -12,9 +14,15 @@ class Feed extends HTMLElement{
     render(){
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
+            <section class="feed">
             <header-welcome></header-welcome>
             <review-container></review-container>
             <comment-feed></comment-feed>
+            <section class="feed">
+            
+            <style>
+            ${style}
+            </styles>
             `
             console.log("feed")
         }}

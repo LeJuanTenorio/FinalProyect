@@ -23,8 +23,8 @@ class AppContainer extends HTMLElement{
             </style>
     
             <section class="appContainer">
-            <div> <my-sidebar></my-sidebar> </div>
-            <div> <main-dash></main-dash> </div>
+            <my-sidebar class="sidebar"></my-sidebar>
+            <main-dash></main-dash>
             </section>
             
 

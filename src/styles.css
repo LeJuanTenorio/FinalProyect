@@ -1,6 +1,15 @@
 .appContainer{
     display: flex;
     flex-direction: row;
-    width: 100%;
-    height: 619px;
+    width: 100vw;
+    height: 100vh;
+}
+
+.sidebar{
+    width: 5vw;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+
 }
