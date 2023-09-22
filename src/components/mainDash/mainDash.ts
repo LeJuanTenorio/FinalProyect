@@ -1,5 +1,5 @@
 import { SidebarRight, Feed } from "../indexExport";
-
+import styles from "./mainDash.css"
 
 class DashMain extends HTMLElement{
 
@@ -15,9 +15,14 @@ class DashMain extends HTMLElement{
     render(){
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
-
-                <main-feed></main-feed>
-                <sidebar-right></sidebar-right>
+            <section class="mainDash">
+            <main-feed></main-feed>
+            <sidebar-right></sidebar-right>
+            </section>
+            
+                <style>
+                ${styles}
+                <style>
             `
             console.log("mainDash")
         }}

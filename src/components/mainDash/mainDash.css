@@ -1,0 +1,6 @@
+.mainDash{
+    display: flex;
+    flex-direction: row;
+    width:92%;
+    height:100%;
+}
