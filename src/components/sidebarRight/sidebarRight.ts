@@ -1,29 +1,31 @@
 import { seriesData } from "../data/seriesData";
 import { Poster } from "../indexExport";
-import style from "./sidebarRight.css"
+import { Attribute } from "../seriesPoster/poster";
+import style from "./sidebarRight.css";
 
-class SidebarRight extends HTMLElement{
-    poster: Poster[]= [];
-    
-    constructor(){
-        super();
-        this.attachShadow({mode:"open"});
+class SidebarRight extends HTMLElement {
+  poster: Poster[] = [];
 
-        seriesData.forEach((seriesItem) => {
-            const posterElement = this.ownerDocument.createElement("poster-img") as Poster;
-            posterElement.poster = seriesItem.poster;
-            this.poster.push(posterElement);
-        });
-    }
-    
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
 
-    connectedCallback(){
-        this.render();
-    }
+    seriesData.forEach((seriesItem) => {
+      const posterElement = this.ownerDocument.createElement(
+        "poster-img"
+      ) as Poster;
+      posterElement.setAttribute(Attribute.poster, seriesItem.poster);
+      this.poster.push(posterElement);
+    });
+  }
 
-    render(){
-        if(this.shadowRoot){
-            this.shadowRoot.innerHTML = `
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    if (this.shadowRoot) {
+      this.shadowRoot.innerHTML = `
             <section class="container">
 
                 <div class="trailerContainer">
@@ -44,19 +46,24 @@ class SidebarRight extends HTMLElement{
             <style>
             ${style}
             </style>
-            `
+            `;
 
-            const trailerContainer = this.shadowRoot.querySelector(".trailerContainer");
-            const favoriteContainer = this.shadowRoot.querySelector(".favoriteContainer");
-            const friendContainer = this.shadowRoot.querySelector(".friendContainer");
-      
-            this.poster.forEach((posterElement) => {
-                favoriteContainer?.appendChild(posterElement);
-            });
+      const trailerContainer =
+        this.shadowRoot.querySelector(".trailerContainer");
+      const favoriteContainer =
+        this.shadowRoot.querySelector(".favoriteContainer");
+      const friendContainer = this.shadowRoot.querySelector(".friendContainer");
 
-            console.log('SidebarRight')
-        }}
+      this.poster.forEach((posterElement) => {
+        favoriteContainer?.appendChild(posterElement);
+      });
+
+      console.log("SidebarRight");
     }
+  }
+}
 
-customElements.define("sidebar-right", SidebarRight);
+if (!customElements.get("sidebar-right")) {
+  customElements.define("sidebar-right", SidebarRight);
+}
 export default SidebarRight;
