@@ -1,3 +1,5 @@
+import { User } from "../indexExport";
+import { userData } from "../data/userData";
 import style from "./headerWelcome.css"
 
 class HeaderWelcome extends HTMLElement{
@@ -15,7 +17,8 @@ class HeaderWelcome extends HTMLElement{
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
             <div class="container">
-            <p>welcome<p>
+            <p>welcome</p>
+            <user name="${userData[0].name}"></user>
             </div>
 
             <style>
