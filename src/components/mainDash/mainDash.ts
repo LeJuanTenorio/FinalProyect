@@ -1,3 +1,5 @@
+import MainDashStyle from "./mainDash.css"
+
 class MainDash extends HTMLElement{
 
     constructor(){
@@ -12,6 +14,11 @@ class MainDash extends HTMLElement{
     render(){
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
+            <style>
+                ${MainDashStyle}
+            </style>
+            <section>
+            </section>
             `
             console.log('mainDash')
 

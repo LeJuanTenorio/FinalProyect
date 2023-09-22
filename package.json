@@ -13,10 +13,10 @@
   "license": "ISC",
   "dependencies": {
     "build": "^0.1.4",
-    "css-loader": "^6.8.1",
     "serve": "^14.2.1"
   },
   "devDependencies": {
+    "css-loader": "^6.8.1",
     "ts-loader": "^9.4.4",
     "typescript": "^5.2.2",
     "webpack": "^5.88.2",
