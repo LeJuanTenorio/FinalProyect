@@ -58,7 +58,7 @@ class ReviewContainer extends HTMLElement {
         
         <h1>${this.background}</h1>
       `;
-      console.log("sidebarLeft");
+      console.log("reviewContainer");
     }
   }
 }

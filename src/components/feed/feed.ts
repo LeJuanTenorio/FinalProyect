@@ -12,6 +12,9 @@ class Feed extends HTMLElement{
     render(){
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
+            <header-welcome></header-welcome>
+            <review-container></review-container>
+            <comment-feed></comment-feed>
             `
             console.log("feed")
         }}
