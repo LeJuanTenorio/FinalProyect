@@ -1,7 +1,6 @@
 import { SidebarRight } from "../indexExport";
-import ".components/indexExport"
 
-class MainDash extends HTMLElement{
+class DashMain extends HTMLElement{
 
     constructor(){
         super();
@@ -21,6 +20,6 @@ class MainDash extends HTMLElement{
         }}
     }
 
-customElements.define("main-dash", MainDash);
-export default MainDash;
+customElements.define("main-dash", DashMain);
+export default DashMain;
 
