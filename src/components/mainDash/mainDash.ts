@@ -1,4 +1,7 @@
 class DashMain extends HTMLElement{
+import { SidebarRight } from "../indexExport";
+
+class DashMain extends HTMLElement{
 
     constructor(){
         super();
@@ -12,6 +15,8 @@ class DashMain extends HTMLElement{
     render(){
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
+            
+                <sidebar-right></sidebar-right>
             `
             console.log("mainDash")
         }}
