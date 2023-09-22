@@ -23,8 +23,8 @@ class AppContainer extends HTMLElement{
             </style>
             
             <section class="appContainer">
+            <sidebar></sidebar>
             <main-dash></main-dash>
-            <sidebar-right class="right-center"></sidebar-right>
             <section>
             `
             console.log('mamaguevo')

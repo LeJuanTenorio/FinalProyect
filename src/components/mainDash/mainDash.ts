@@ -14,6 +14,7 @@ class DashMain extends HTMLElement{
     render(){
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
+            
                 <sidebar-right></sidebar-right>
             `
 
