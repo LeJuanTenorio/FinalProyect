@@ -5,6 +5,11 @@
     overflow-x: hidden;
 }
 
+
+body::-webkit-scrollbar{
+    display:none;
+}
+
 .appContainer{
     display: flex;
     flex-direction: row;

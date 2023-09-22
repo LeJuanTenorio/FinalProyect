@@ -1,10 +1,9 @@
 import { seriesData } from "../data/seriesData";
-import { Poster, Modal} from "../indexExport"; 
-import { Attribute } from "../seriesPoster/poster";
+import { Poster, Modal } from "../indexExport"; 
 import style from "./megaReview.css";
 
 class MegaReview extends HTMLElement {
-  poster: Poster[] = [];
+  background: HTMLImageElement[] = [];
   modal: Modal;
 
   constructor() {
@@ -12,15 +11,15 @@ class MegaReview extends HTMLElement {
     this.attachShadow({ mode: "open" });
 
     seriesData.forEach((seriesItem) => {
-      const posterElement = this.ownerDocument.createElement("poster-img") as Poster;
-      posterElement.setAttribute(Attribute.poster, seriesItem.poster);
+      const imgElement = this.ownerDocument.createElement("img") as HTMLImageElement;
+      imgElement.setAttribute("src", seriesItem.background); // Set the "src" attribute
 
-      posterElement.addEventListener("click", () => {
+      imgElement.addEventListener("click", () => {
         this.modal.show();
         console.log("modal");
       });
 
-      this.poster.push(posterElement);
+      this.background.push(imgElement);
     });
 
     this.modal = this.ownerDocument.createElement("my-modal") as Modal;
@@ -33,9 +32,8 @@ class MegaReview extends HTMLElement {
   render() {
     if (this.shadowRoot) {
       this.shadowRoot.innerHTML = `
-
-          <div class="favoriteContainer">
-          </div>
+        <div class="favoriteContainer">
+        </div>
         
         <style>
           ${style}
@@ -43,13 +41,13 @@ class MegaReview extends HTMLElement {
       `;
 
       const favoriteContainer = this.shadowRoot.querySelector(".favoriteContainer");
-      this.poster.forEach((posterElement) => {
-        favoriteContainer?.appendChild(posterElement);
+      this.background.forEach((imgElement) => {
+        favoriteContainer?.appendChild(imgElement);
       });
 
       favoriteContainer?.appendChild(this.modal);
 
-      console.log("reviwe");
+      console.log("review");
     }
   }
 }

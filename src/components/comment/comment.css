@@ -1,13 +1,12 @@
 #comments-container {
-    width: 80%;
+    width: 60%;
     margin-bottom: 20px;
-    margin-left: 50px;
+    margin-left: 30vw;
     padding: 10px;
     background-color: #3B5769;
     border: none;
     border-radius: 5%;
 }
-
 
 .comment {
     margin-bottom: 10px;

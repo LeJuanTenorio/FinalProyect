@@ -1,5 +1,6 @@
 import { seriesData } from "../data/seriesData";
-import { Poster, Modal } from "../indexExport"; // Import your Modal component
+import { friendData } from "../data/fri";
+import { Poster, Modal, User } from "../indexExport"; 
 import { Attribute } from "../seriesPoster/poster";
 import style from "./sidebarRight.css";
 
@@ -23,7 +24,6 @@ class SidebarRight extends HTMLElement {
       this.poster.push(posterElement);
     });
 
-    // Create an instance of the Modal component
     this.modal = this.ownerDocument.createElement("my-modal") as Modal;
   }
 
