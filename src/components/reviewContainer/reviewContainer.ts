@@ -52,11 +52,13 @@ class ReviewContainer extends HTMLElement {
   render() {
     if (this.shadowRoot) {
       this.shadowRoot.innerHTML = `
+        <h1>${this.background}</h1>
+        
         <style>
           ${ReviewContainerStyle}
         </style>
         
-        <h1>${this.background}</h1>
+        
       `;
       console.log("reviewContainer");
     }

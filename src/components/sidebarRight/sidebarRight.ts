@@ -1,3 +1,5 @@
+import style from "./sidebarRight.css"
+
 class SidebarRight extends HTMLElement{
 
     constructor(){
@@ -15,6 +17,10 @@ class SidebarRight extends HTMLElement{
             <section>
             <p>placeholder</p>
             </section>
+
+            <style>
+            ${style}
+            </style>
             `
             console.log('SidebarRight')
         }}
