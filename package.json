@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "build": "^0.1.4",
+    "firebase": "^10.5.0",
     "serve": "^14.2.1"
   },
   "devDependencies": {
