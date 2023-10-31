@@ -1,17 +1,9 @@
-import { SquadActions } from '../types/store';
+import { Screens } from "../types/navigation";
 
-
-export const addCharacter = (payload: any) => {
-	return {
-		action: SquadActions.ADDCHARACTER,
-		payload: 'active',
-	};
-};
-
-export const removeCharacter = (payload: any) => {
-	return {
-		action: SquadActions.REMOVECHARACTER,
-		payload: 'inactive',
-	};
+export const navigate = (screen: Screens) => {
+    return {
+        type: "NAVIGATE",
+        payload: screen,
+    };
 };
 

@@ -1,5 +1,5 @@
 import { seriesData } from "../data/seriesData";
-import { Poster, Modal, User } from "../indexExport"; 
+import { Poster, Modal, User } from ".."; 
 import { Attribute } from "../seriesPoster/poster";
 import style from "./sidebarRight.css";
 

@@ -1,40 +1,40 @@
-import { userData } from "./components/data/userData";
-import { SidebarRight, Sidebar, DashMain} from "./components/indexExport";
-import "./components/indexExport"
+import "./components"
+import "./screens/dashboard/dashboard"
+import "./screens/login/login"
+import { addObserver, appState } from "./store/index";
+import { Screens } from "./types/navigation";
 import styles from "./styles.css"
 
 
 
-class AppContainer extends HTMLElement{
-
+class AppContainer extends HTMLElement {
     constructor(){
         super();
-        this.attachShadow({mode:"open"});
+        this.attachShadow({mode: "open"})
+        addObserver(this);
     }
 
-    connectedCallback(){
-        this.render();
+    connectedCallback() {
+        this.render()
     }
 
-    render(){
-        if(this.shadowRoot){
-            this.shadowRoot.innerHTML = `
-            <style>
-            ${styles}
-            </style>
+    render() {
+        if(this.shadowRoot) this.shadowRoot.innerHTML = ``
+        switch (appState.screen) {
+        case Screens.DASHBOARD:
+            const dashboard = this.ownerDocument.createElement("app-dashboard");
+            this.shadowRoot?.appendChild(dashboard);
+            break;
     
-            <section class="appContainer">
-            <my-sidebar class="sidebar"></my-sidebar>
-            <main-dash></main-dash>
-            <megaReview></megaReview>
-            </section>
-            
-
-            `
-            console.log('holi')
-
-        }}
+        case Screens.LOGIN:
+            const login = this.ownerDocument.createElement("app-login");
+            this.shadowRoot?.appendChild(login);
+            break;
+    
+        default:
+            break;
+        }
     }
+}
 
-customElements.define("app-container", AppContainer);
-
+customElements.define('app-container', AppContainer)

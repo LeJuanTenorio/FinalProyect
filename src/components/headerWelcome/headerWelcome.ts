@@ -1,4 +1,4 @@
-import { User } from "../indexExport";
+import { User } from "..";
 import { userData } from "../data/userData";
 import style from "./headerWelcome.css"
 

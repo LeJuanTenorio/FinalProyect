@@ -1,5 +1,5 @@
 import { seriesData } from "../data/seriesData";
-import { Poster, Modal } from "../indexExport"; 
+import { Poster, Modal } from ".."; 
 import style from "./megaReview.css";
 
 class MegaReview extends HTMLElement {
