@@ -1,5 +1,4 @@
 import { seriesData } from "../data/seriesData";
-import { friendData } from "../data/fri";
 import { Poster, Modal, User } from "../indexExport"; 
 import { Attribute } from "../seriesPoster/poster";
 import style from "./sidebarRight.css";
