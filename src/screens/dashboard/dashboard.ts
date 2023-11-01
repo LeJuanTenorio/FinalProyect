@@ -24,8 +24,6 @@ class Dashboard extends HTMLElement{
             <main-dash></main-dash>
             <megaReview></megaReview>
             </section>
-            
-
             `
         }}
     }

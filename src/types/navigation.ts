@@ -1,4 +1,5 @@
 export enum Screens{
     LOGIN = "LOGIN",
-    DASHBOARD = "DASHBOARD"
+    DASHBOARD = "DASHBOARD",
+    SIGNUP = "SIGNUP"
 }
