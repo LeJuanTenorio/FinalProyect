@@ -11,8 +11,9 @@ class MegaReview extends HTMLElement {
     this.attachShadow({ mode: "open" });
 
     seriesData.forEach((seriesItem) => {
-      const imgElement = this.ownerDocument.createElement("img") as HTMLImageElement;
-      imgElement.setAttribute("src", seriesItem.background); // Set the "src" attribute
+      const imgElement = this.ownerDocument.createElement("img");
+      imgElement.setAttribute("src", seriesItem.background); 
+      imgElement.setAttribute("title", seriesItem.title); 
 
       imgElement.addEventListener("click", () => {
         this.modal.show();

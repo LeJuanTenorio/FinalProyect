@@ -22,7 +22,6 @@ class Dashboard extends HTMLElement{
             <section class="appContainer">
             <my-sidebar class="sidebar"></my-sidebar>
             <main-dash></main-dash>
-            <megaReview></megaReview>
             </section>
             `
         }}
