@@ -1,4 +1,7 @@
 import SidebarStyle from "./sidebar.css"
+import { dispatch } from "../../store";
+import { navigate } from "../../store/actions";
+import { Screens } from "../../types/navigation";
 
 class Sidebar extends HTMLElement {
     constructor(){
@@ -10,6 +13,11 @@ class Sidebar extends HTMLElement {
         this.render();
     }
 
+
+    dashPageClick(){
+        dispatch(navigate(Screens.DASHBOARD));
+      }
+    
         render(){
             if(this.shadowRoot){
                 this.shadowRoot.innerHTML = `
@@ -27,7 +35,8 @@ class Sidebar extends HTMLElement {
             </div>
                 `
 
-                
+                const home = this.shadowRoot.querySelector(".home")
+                home?.addEventListener("click", () => this.dashPageClick())
                 console.log("sidebarLeft")
 
             }

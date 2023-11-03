@@ -17,7 +17,7 @@ class CommentFeed extends HTMLElement{
             <style>
             ${CommentFeedStyle}
             </style>
-            <my-comment></my-comment>
+            <my-comment class="alt"></my-comment>
             `
             console.log("commentfeed")
         }}
