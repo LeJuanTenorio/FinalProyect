@@ -22,6 +22,7 @@ class Series extends HTMLElement{
     
             <section class="appContainer">
             <my-sidebar class="sidebar"></my-sidebar>
+            <series-info><series-info>
             </section>
             `
         }}

@@ -1,5 +1,6 @@
 export enum PersistanceKeys {
     "STORE" = "STORE",
+    "SERIES" = "SERIES"
   }
   
   const get = <T>({

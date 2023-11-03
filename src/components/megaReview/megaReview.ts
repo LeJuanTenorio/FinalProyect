@@ -27,6 +27,12 @@ class MegaReview extends HTMLElement {
     this.render();
   }
 
+  addToLocalStorage(key:string, value:string) {
+       if (localStorage.getItem(key)) {
+      localStorage.removeItem(key);}
+      localStorage.setItem(key, value);
+  }
+
   seriesPageClick(){
     dispatch(navigate(Screens.SERIES));
   }
@@ -49,7 +55,10 @@ class MegaReview extends HTMLElement {
         const posterElement = document.createElement('img');
         posterElement.src = series.background;
         posterElement.title = series.title;
-        posterElement.addEventListener("click", () => this.seriesPageClick())
+        posterElement.addEventListener("click", () => {
+          this.seriesPageClick();
+          this.addToLocalStorage("SERIE", series.title);
+      });
         favoriteContainer?.appendChild(posterElement);
         posterElement.setAttribute('class', 'favorites-poster');
       }) 

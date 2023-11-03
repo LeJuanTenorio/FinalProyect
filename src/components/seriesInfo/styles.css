@@ -1,0 +1,16 @@
+.favoriteContainer{
+    width: 300px;
+    height: 380px;
+    overflow-y: scroll;
+}
+
+.favoriteContainer::-webkit-scrollbar{
+    display: none;
+}
+
+img{
+    width: 20vw;
+    height: auto;
+    padding: 20px;
+    border-radius: 50px;
+}

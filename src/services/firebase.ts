@@ -28,7 +28,7 @@ export const getSeries = async () => {
   return transformed;
 };
 
-export const getSerie = async (serie:string) => {
+export const getSerie = async (serie:any) => {
   const querySnapshot = await getDocs(collection(db, "SeriesData"));
   const transformed: Array<Series> = [];
 
@@ -36,10 +36,9 @@ export const getSerie = async (serie:string) => {
     const titlesList = doc.data().title; 
 
     if(serie === titlesList){
-    querySnapshot.forEach((serie) => {
-      const data: Omit<Series, "id"> = serie.data() as any;
-      transformed.push({ id: serie.id, ...data});
-    })};
+      const serieData = doc.data() as Omit<Series,"id">
+      transformed.push({id: doc.id, ...serieData})
+    };
   }
   return transformed;
 };
@@ -95,7 +94,6 @@ const getUser = async (user: string) => {
 
   for (const doc of querySnapshot.docs) {
     const userName = doc.data().Name;
-    //console.log('userName:', userName, 'user:', user); 
 
     if (user === userName) {
       const userData = doc.data() as Omit<User, "id">;
@@ -105,6 +103,8 @@ const getUser = async (user: string) => {
   
   return transformed;
 };
+
+
 
 // const getFavoritesId = async (user:string) => {
 //   try {

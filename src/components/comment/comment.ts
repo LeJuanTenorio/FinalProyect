@@ -27,7 +27,7 @@ class Comment extends HTMLElement{
             const firestoreReviews= await Firebase.getReviews();
 
             firestoreReviews.forEach((review:Review)=>{
-            console.log(firestoreReviews);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
             const commentsContainer = this.ownerDocument.createElement('div');
             commentsContainer.setAttribute('class','comments-container')
             this.shadowRoot?.appendChild(commentsContainer);
@@ -65,7 +65,7 @@ class Comment extends HTMLElement{
             submitButton.type = 'submit';
             submitButton.innerText = 'Send';
             commentForm.appendChild(submitButton);
-                        console.log("comment")})
+            })
             
                     }}
                 }
