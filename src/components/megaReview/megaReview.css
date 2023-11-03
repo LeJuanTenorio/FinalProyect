@@ -10,7 +10,7 @@
 
 img{
     width: 20vw;
-    height: 150px;
+    height: auto;
     padding: 20px;
     border-radius: 50px;
 }
