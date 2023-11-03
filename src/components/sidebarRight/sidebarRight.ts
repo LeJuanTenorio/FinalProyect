@@ -1,10 +1,10 @@
-import { Poster, Modal, User } from ".."; 
+import { Poster, Modal, } from ".."; 
 import { Attribute } from "../seriesPoster/poster";
 import style from "./sidebarRight.css";
 
 import "../../components/index"
 import styles from "./styles.css"
-import { Series } from "../../types/dataManage";
+import { Series, User } from "../../types/dataManage";
 import { Firestore } from "firebase/firestore";
 import Firebase from "../../services/firebase"
 
@@ -60,6 +60,8 @@ class SidebarRight extends HTMLElement {
       const series = await Firebase.getSeries();
       const seriesReview = await Firebase.getReviews();
       const seriesReviewSpecific = await Firebase.getReview("Dark");
+      const people = await Firebase.getUsers();
+      const userr = await Firebase.getUser("Julian");
       
 
       series.forEach((series:Series)=>{
@@ -69,8 +71,15 @@ class SidebarRight extends HTMLElement {
         posterElement.setAttribute('class', 'favorites-poster');
         //console.log(series);
       }) 
+
+      people.forEach((user:User)=>{
+        const friendElement = document.createElement('img');
+        friendElement.src = user.pic;
+        friendContainer?.appendChild(friendElement);
+        friendElement.setAttribute('class','friend');
+      })
       
-      console.log(seriesReviewSpecific);
+      console.log(people);
     }
   }
 }

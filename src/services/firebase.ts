@@ -28,7 +28,7 @@ export const getSeries = async () => {
   return transformed;
 };
 
-export const getUser = async () => {
+export const getUsers = async () => {
   const querySnapshot = await getDocs(collection(db, "UserData"));
   const transformed: Array<User> = [];
 
@@ -73,9 +73,27 @@ export const getReview = async (specifiedTitle: string) => {
   return allReviews;
 };
 
+export const getUser = async (user: string) => {
+  const userDataSnapshot = await getDocs(collection(db, "SeriesData"));
+  const userReturn: Array<User> = [];
+
+  for (const doc of userDataSnapshot.docs) {
+    const userList = doc.data().name; 
+
+    if(user === userList){
+    userDataSnapshot.forEach((user) => {
+      const data: Omit<User, "id"> = user.data() as any;
+      userReturn.push({ id: user.id, ...data});
+    })};
+  }
+  return userReturn;
+};
+
+
 export default {
   getSeries,
-  getUser, 
+  getUsers, 
+  getUser,
   getReviews,
   getReview,
 }
