@@ -1,42 +1,50 @@
-import { seriesData } from "../data/seriesData";
 import { Poster, Modal, User } from ".."; 
 import { Attribute } from "../seriesPoster/poster";
 import style from "./sidebarRight.css";
 
+import "../../components/index"
+import styles from "./styles.css"
+import { Series } from "../../types/dataManage";
+import { Firestore } from "firebase/firestore";
+import Firebase from "../../services/firebase"
+
+const seriesData: Series = {
+    id:"",
+    title: "",
+    poster: "",
+    synopsis: "",
+    logo_title: "",
+    background: "",
+}
+
 class SidebarRight extends HTMLElement {
   poster: Poster[] = [];
-  modal: Modal;
 
   constructor() {
     super();
+
     this.attachShadow({ mode: "open" });
 
-    seriesData.forEach((seriesItem) => {
-      const posterElement = this.ownerDocument.createElement("poster-img") as Poster;
-      posterElement.setAttribute(Attribute.poster, seriesItem.poster);
+    // seriesData.forEach((seriesItem) => {
+    //   const posterElement = this.ownerDocument.createElement("poster-img") as Poster;
+    //   posterElement.setAttribute(Attribute.poster, seriesItem.poster);
 
-      posterElement.addEventListener("click", () => {
-        this.modal.show();
-        console.log("modal");
-      });
+    //   posterElement.addEventListener("click", () => {
+    //     console.log("modal");
+    //   });
 
-      this.poster.push(posterElement);
-    });
-
-    this.modal = this.ownerDocument.createElement("my-modal") as Modal;
+    //   this.poster.push(posterElement);
+    // });
   }
 
   connectedCallback() {
     this.render();
   }
 
-  render() {
+ async render() {
     if (this.shadowRoot) {
       this.shadowRoot.innerHTML = `
         <section class="container">
-          <div class="trailerContainer">
-            <h1>Latest Trailer</h1>
-          </div>
 
           <div class="favoriteContainer">
             <h1>Favorite Shows</h1>
@@ -60,9 +68,12 @@ class SidebarRight extends HTMLElement {
         favoriteContainer?.appendChild(posterElement);
       });
 
-      favoriteContainer?.appendChild(this.modal);
-
       console.log("SidebarRight");
+
+      const series = await Firebase.getSeries();
+      series.forEach((series:Series)=>{
+        console.log(series);
+      }) 
     }
   }
 }

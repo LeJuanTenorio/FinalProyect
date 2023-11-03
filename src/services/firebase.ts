@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { Series } from "../types/dataManage";
 
 
 const firebaseConfig = {
@@ -12,3 +13,20 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+export const getSeries = async () => {
+  const querySnapshot = await getDocs(collection(db, "SeriesData"));
+  const transformed: Array<Series> = [];
+
+  querySnapshot.forEach((doc) => {
+    const data: Omit<Series, "id"> = doc.data() as any;
+    transformed.push({ id: doc.id, ...data });
+  });
+
+  return transformed;
+};
+
+export default {
+  getSeries
+}
