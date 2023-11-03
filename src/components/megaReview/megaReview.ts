@@ -42,7 +42,7 @@ class MegaReview extends HTMLElement {
         posterElement.src = series.background;
         favoriteContainer?.appendChild(posterElement);
         posterElement.setAttribute('class', 'favorites-poster');
-        console.log(series);
+        //console.log(series);
       }) 
 
       console.log("review");

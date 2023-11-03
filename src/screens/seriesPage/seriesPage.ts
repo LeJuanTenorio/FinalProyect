@@ -20,7 +20,6 @@ class Dashboard extends HTMLElement{
             </style>
     
             <section class="appContainer">
-            <my-sidebar class="sidebar"></my-sidebar>
             </section>
             `
         }}

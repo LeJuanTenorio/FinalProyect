@@ -58,12 +58,15 @@ class SidebarRight extends HTMLElement {
       console.log("SidebarRight");
 
       const series = await Firebase.getSeries();
+      const seriesReview = await Firebase.getReviews();
+      
+
       series.forEach((series:Series)=>{
         const posterElement = document.createElement('img');
         posterElement.src = series.poster;
         favoriteContainer?.appendChild(posterElement);
         posterElement.setAttribute('class', 'favorites-poster');
-        console.log(series);
+        //console.log(series);
       }) 
       
       

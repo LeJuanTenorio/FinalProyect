@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
-import { Series, User} from "../types/dataManage";
+import { getFirestore, collection, addDoc, getDocs, QuerySnapshot } from "firebase/firestore";
+import { Series, User, Review} from "../types/dataManage";
+import { userData } from "../components/data/userData";
 
 
 const firebaseConfig = {
@@ -39,6 +40,42 @@ export const getUser = async () => {
   return transformed;
 };
 
+export const getReviews = async () => {
+  const seriesDataSnapshot = await getDocs(collection(db, "SeriesData"));
+  const allReviews: Array<Review> = [];
+
+  for (const doc of seriesDataSnapshot.docs) {
+    const querySnapshot = await getDocs(collection(doc.ref, 'reviews'));
+    querySnapshot.forEach((review) => {
+      const data: Omit<Review, "id"> = review.data() as any;
+      allReviews.push({ id: review.id, ...data});
+    });
+  }
+
+  return allReviews;
+};
+
+export const getReview = async () => {
+  const seriesDataSnapshot = await getDocs(collection(db, "SeriesData"));
+  const allReviews: Array<Review> = [];
+
+  for (const doc of seriesDataSnapshot.docs) {
+    const querySnapshot = await getDocs(collection(doc.ref, 'reviews'));
+    const seriesName = doc.data().title; 
+    console.log(seriesName);
+
+    querySnapshot.forEach((review) => {
+      const data: Omit<Review, "id"> = review.data() as any;
+      allReviews.push({ id: review.id, ...data});
+    });
+  }
+
+  return allReviews;
+};
+
 export default {
-  getSeries
+  getSeries,
+  getUser, 
+  getReviews,
+  getReview,
 }
