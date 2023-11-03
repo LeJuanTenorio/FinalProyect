@@ -7,3 +7,10 @@
     flex-direction: column;
 }
 
+.favorites-poster{
+    width: 60px;
+    height: auto;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+

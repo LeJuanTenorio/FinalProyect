@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
-import { Series } from "../types/dataManage";
+import { Series, User} from "../types/dataManage";
 
 
 const firebaseConfig = {
@@ -21,6 +21,18 @@ export const getSeries = async () => {
 
   querySnapshot.forEach((doc) => {
     const data: Omit<Series, "id"> = doc.data() as any;
+    transformed.push({ id: doc.id, ...data });
+  });
+
+  return transformed;
+};
+
+export const getUser = async () => {
+  const querySnapshot = await getDocs(collection(db, "UserData"));
+  const transformed: Array<User> = [];
+
+  querySnapshot.forEach((doc) => {
+    const data: Omit<User, "id"> = doc.data() as any;
     transformed.push({ id: doc.id, ...data });
   });
 

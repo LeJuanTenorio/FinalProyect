@@ -13,3 +13,9 @@ export interface Review {
     comment: string;
     serie: string;
 }
+
+export interface User {
+    id: string;
+    name: string;
+    pic: string;
+}

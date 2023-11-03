@@ -18,23 +18,12 @@ const seriesData: Series = {
 }
 
 class SidebarRight extends HTMLElement {
-  poster: Poster[] = [];
 
   constructor() {
     super();
 
     this.attachShadow({ mode: "open" });
 
-    // seriesData.forEach((seriesItem) => {
-    //   const posterElement = this.ownerDocument.createElement("poster-img") as Poster;
-    //   posterElement.setAttribute(Attribute.poster, seriesItem.poster);
-
-    //   posterElement.addEventListener("click", () => {
-    //     console.log("modal");
-    //   });
-
-    //   this.poster.push(posterElement);
-    // });
   }
 
   connectedCallback() {
@@ -64,16 +53,20 @@ class SidebarRight extends HTMLElement {
       const favoriteContainer = this.shadowRoot.querySelector(".favoriteContainer");
       const friendContainer = this.shadowRoot.querySelector(".friendContainer");
 
-      this.poster.forEach((posterElement) => {
-        favoriteContainer?.appendChild(posterElement);
-      });
+      
 
       console.log("SidebarRight");
 
       const series = await Firebase.getSeries();
       series.forEach((series:Series)=>{
+        const posterElement = document.createElement('img');
+        posterElement.src = series.poster;
+        favoriteContainer?.appendChild(posterElement);
+        posterElement.setAttribute('class', 'favorites-poster');
         console.log(series);
       }) 
+      
+      
     }
   }
 }
