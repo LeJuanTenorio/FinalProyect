@@ -54,6 +54,20 @@ class SeriesInfo extends HTMLElement {
         containerMid?.appendChild(posterElement);
         posterElement.setAttribute('class', 'the-poster');
       })
+
+      const commentForm = this.ownerDocument.createElement('form');
+            commentForm.id = 'comment-form';
+            containerComment?.appendChild(commentForm);
+
+      const commentTextArea = this.ownerDocument.createElement('textarea');
+            commentTextArea.id = 'comment-text';
+            commentTextArea.placeholder = "What do you think of the show?";
+            commentForm.appendChild(commentTextArea);
+
+            const submitButton = this.ownerDocument.createElement('button');
+            submitButton.type = 'submit';
+            submitButton.innerText = 'Send';
+            commentForm.appendChild(submitButton);
     }
   }
 }

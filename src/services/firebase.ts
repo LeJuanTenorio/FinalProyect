@@ -106,6 +106,18 @@ const getUser = async (user: string) => {
 
 
 
+const addReview = async (serieTitle: string, post: Omit<Review, "id">) => {
+  try {
+    const seriesData = collection (db, "SeriesData", serieTitle);  
+    const reviews = collection(seriesData, "reviews");
+
+    await addDoc(reviews, post);
+    console.log("Added to subcollection");
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 // const getFavoritesId = async (user:string) => {
 //   try {
 //     const userInfo = await getUser(user);
