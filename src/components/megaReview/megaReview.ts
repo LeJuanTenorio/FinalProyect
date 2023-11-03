@@ -2,6 +2,10 @@ import { Poster, Modal } from "..";
 import style from "./megaReview.css";
 import { Series } from "../../types/dataManage";
 import Firebase from "../../services/firebase"
+import { dispatch } from "../../store";
+import { navigate } from "../../store/actions";
+import { Screens } from "../../types/navigation";
+import { AppState } from "../../types/store";
 
 const seriesData: Series = {
   id:"",
@@ -23,6 +27,10 @@ class MegaReview extends HTMLElement {
     this.render();
   }
 
+  seriesPageClick(){
+    dispatch(navigate(Screens.SERIES));
+  }
+
   async render() {
     if (this.shadowRoot) {
       this.shadowRoot.innerHTML = `
@@ -40,9 +48,10 @@ class MegaReview extends HTMLElement {
       series.forEach((series:Series)=>{
         const posterElement = document.createElement('img');
         posterElement.src = series.background;
+        posterElement.title = series.title;
+        posterElement.addEventListener("click", () => this.seriesPageClick())
         favoriteContainer?.appendChild(posterElement);
         posterElement.setAttribute('class', 'favorites-poster');
-        //console.log(series);
       }) 
 
       console.log("review");

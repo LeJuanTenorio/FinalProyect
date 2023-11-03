@@ -18,4 +18,5 @@ export interface User {
     id: string;
     name: string;
     pic: string;
+    favorites: Array<number>;
 }

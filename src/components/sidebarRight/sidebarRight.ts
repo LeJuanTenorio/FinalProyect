@@ -61,8 +61,6 @@ class SidebarRight extends HTMLElement {
       const seriesReview = await Firebase.getReviews();
       const seriesReviewSpecific = await Firebase.getReview("Dark");
       const people = await Firebase.getUsers();
-      const userr = await Firebase.getUser("Amanda");
-      const getSerie = await Firebase.getSerie("Dark");
       
 
       series.forEach((series:Series)=>{
@@ -80,8 +78,8 @@ class SidebarRight extends HTMLElement {
         friendElement.setAttribute('class','friend');
       })
       
-      console.log(people);
-      console.log(userr);
+      
+
     }
   }
 }

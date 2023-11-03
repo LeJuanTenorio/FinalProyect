@@ -95,7 +95,7 @@ const getUser = async (user: string) => {
 
   for (const doc of querySnapshot.docs) {
     const userName = doc.data().Name;
-    console.log('userName:', userName, 'user:', user); 
+    //console.log('userName:', userName, 'user:', user); 
 
     if (user === userName) {
       const userData = doc.data() as Omit<User, "id">;
@@ -106,6 +106,16 @@ const getUser = async (user: string) => {
   return transformed;
 };
 
+// const getFavoritesId = async (user:string) => {
+//   try {
+//     const userInfo = await getUser(user);
+//     const favoritesIds = userInfo.favorites;
+//     return favoritesIds;
+//   } catch (error) {
+//     console.error('Error fetching user info:', error);
+//     return [];
+//   }
+// };
 
 export default {
   getSeries,
@@ -114,4 +124,5 @@ export default {
   getUser,
   getReviews,
   getReview,
+  //getFavoritesId,
 }
