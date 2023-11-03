@@ -55,19 +55,19 @@ export const getReviews = async () => {
   return allReviews;
 };
 
-export const getReview = async () => {
+export const getReview = async (specifiedTitle: string) => {
   const seriesDataSnapshot = await getDocs(collection(db, "SeriesData"));
   const allReviews: Array<Review> = [];
 
   for (const doc of seriesDataSnapshot.docs) {
-    const querySnapshot = await getDocs(collection(doc.ref, 'reviews'));
     const seriesName = doc.data().title; 
-    console.log(seriesName);
 
+    if(specifiedTitle === seriesName){
+    const querySnapshot = await getDocs(collection(doc.ref, 'reviews'));
     querySnapshot.forEach((review) => {
       const data: Omit<Review, "id"> = review.data() as any;
       allReviews.push({ id: review.id, ...data});
-    });
+    })};
   }
 
   return allReviews;

@@ -59,6 +59,7 @@ class SidebarRight extends HTMLElement {
 
       const series = await Firebase.getSeries();
       const seriesReview = await Firebase.getReviews();
+      const seriesReviewSpecific = await Firebase.getReview("Dark");
       
 
       series.forEach((series:Series)=>{
@@ -69,7 +70,7 @@ class SidebarRight extends HTMLElement {
         //console.log(series);
       }) 
       
-      
+      console.log(seriesReviewSpecific);
     }
   }
 }
