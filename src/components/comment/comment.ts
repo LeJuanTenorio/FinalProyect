@@ -5,7 +5,40 @@ import { dispatch } from "../../store";
 import { navigate } from "../../store/actions";
 import { Screens } from "../../types/navigation";
 
+export enum CommentAttribute{
+    "name" = "name",
+    "comment" = "comment",
+    "serie" = "serie"
+}
+
 class Comment extends HTMLElement{
+
+    name:string="";
+    comment:string="";
+    serie:string="";
+
+    static get observedAttributes(){
+        const attrs: Record <CommentAttribute,null> = {
+            name: null,
+            comment: null,
+            serie: null
+        }
+        return Object.keys(attrs);
+    }
+
+    attributeChangedCallback(
+        propName: CommentAttribute,
+        _: unknown,
+        newValue: string
+        ) {
+            switch (propName) {
+                default:
+                this[propName] = newValue;
+                break;
+            }
+            
+            this.render();
+        }
 
     constructor(){
         super();
@@ -23,14 +56,12 @@ class Comment extends HTMLElement{
             ${CommentStyle}
             </style>
             `
-
-            const firestoreReviews= await Firebase.getReviews();
-
-            firestoreReviews.forEach((review:Review)=>{
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
             const commentsContainer = this.ownerDocument.createElement('div');
             commentsContainer.setAttribute('class','comments-container')
-            this.shadowRoot?.appendChild(commentsContainer);
+
+            const seriesId = this.ownerDocument.createElement('id');
+            seriesId.id = `${this.serie}`;
 
             const posterImage = this.ownerDocument.createElement('img');
             posterImage.classList.add('poster');
@@ -38,7 +69,7 @@ class Comment extends HTMLElement{
             commentsContainer.appendChild(posterImage);
 
             const commentParagraph = this.ownerDocument.createElement('p');
-            commentParagraph.innerText = review.comment;
+            commentParagraph.innerText = `${this.comment}`
             commentsContainer.appendChild(commentParagraph);
 
             const horizontalLine = this.ownerDocument.createElement('hr');
@@ -46,8 +77,7 @@ class Comment extends HTMLElement{
 
             const commentForm = this.ownerDocument.createElement('form');
             commentForm.id = 'comment-form';
-            commentsContainer.appendChild(commentForm);
-
+            
             const saveIcon = this.ownerDocument.createElement('img');
             saveIcon.src = 'https://cdn.iconscout.com/icon/free/png-256/free-save-3244517-2701888.png?f=webp';
             commentForm.appendChild(saveIcon);
@@ -65,10 +95,11 @@ class Comment extends HTMLElement{
             submitButton.type = 'submit';
             submitButton.innerText = 'Send';
             commentForm.appendChild(submitButton);
-            })
-            
-                    }}
-                }
+
+            commentsContainer.appendChild(commentForm);
+            this.shadowRoot?.appendChild(commentsContainer);
+        }}
+}
 
 customElements.define("my-comment", Comment);
 export default Comment;

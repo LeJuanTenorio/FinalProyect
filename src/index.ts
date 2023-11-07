@@ -42,6 +42,16 @@ class AppContainer extends HTMLElement {
             const signUp = this.ownerDocument.createElement("app-signUp");
             this.shadowRoot?.appendChild(signUp);
             break;
+        
+        case Screens.SEARCH:
+            const search = this.ownerDocument.createElement("app-search");
+            this.shadowRoot?.appendChild(search);
+            break;
+        
+        case Screens.LANDING:
+            const LANDING = this.ownerDocument.createElement("app-landing");
+            this.shadowRoot?.appendChild(LANDING);
+            break;
     
         default:
             break;

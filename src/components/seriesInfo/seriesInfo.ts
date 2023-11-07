@@ -12,8 +12,7 @@ const getFromLocalStorage = async (key:string) => {
     const value = await localStorage.getItem(key);
     if (value !== null) {
       return value;
-    } 
-}
+    } }
 
 class SeriesInfo extends HTMLElement {
 
@@ -22,7 +21,15 @@ class SeriesInfo extends HTMLElement {
     this.attachShadow({ mode: "open" });
   }
 
+
+
+  async getSerieInfo(){
+    
+  }
   
+  submitReview(){
+   
+  }
 
   connectedCallback() {
     this.render();
@@ -45,15 +52,20 @@ class SeriesInfo extends HTMLElement {
       const containerMid = this.shadowRoot.querySelector(".containerMid");
       const containerComment = this.shadowRoot.querySelector(".containerComment");
 
-      const getSerieInfo = await Firebase.getSerie(getFromLocalStorage("SERIE"))
-
-      getSerieInfo.forEach((series:Series) => {
-        const posterElement = document.createElement('img');
-        posterElement.src = series.background;
-        posterElement.title = series.title;
-        containerMid?.appendChild(posterElement);
-        posterElement.setAttribute('class', 'the-poster');
-      })
+      const getSerieInfo = Firebase.getSerie(getFromLocalStorage("SERIE"));
+      console.log(getSerieInfo);
+      
+      getSerieInfo.then((seriesArray) => {
+        seriesArray.forEach((series) => {
+          const posterElement = document.createElement('img');
+          posterElement.src = series.background;
+          posterElement.title = series.title;
+          containerMid?.appendChild(posterElement);
+          posterElement.setAttribute('class', 'the-poster');
+        });
+      }).catch((error) => {
+        console.error(error);
+      });
 
       const commentForm = this.ownerDocument.createElement('form');
             commentForm.id = 'comment-form';

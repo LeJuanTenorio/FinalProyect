@@ -106,7 +106,7 @@ const getUser = async (user: string) => {
 
 
 
-const addReview = async (serieTitle: string, post: Omit<Review, "id">) => {
+const addReview = async (serieTitle: any, post: Omit<Review, "id">) => {
   try {
     const seriesData = collection (db, "SeriesData", serieTitle);  
     const reviews = collection(seriesData, "reviews");
@@ -136,5 +136,6 @@ export default {
   getUser,
   getReviews,
   getReview,
+  addReview,
   //getFavoritesId,
 }
