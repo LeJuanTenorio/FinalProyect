@@ -32,6 +32,7 @@ class CommentFeed extends HTMLElement{
             const comment = this.ownerDocument.createElement('my-comment')
             comment.setAttribute(CommentAttribute.name,data.user)
             comment.setAttribute(CommentAttribute.comment,data.comment)
+            comment.setAttribute(CommentAttribute.name,data.serie)
             this.shadowRoot?.appendChild(comment);
          })
         }}        
