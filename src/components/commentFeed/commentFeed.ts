@@ -28,12 +28,15 @@ class CommentFeed extends HTMLElement{
             ${CommentFeedStyle}
             </style>
             `
+        const container = this.ownerDocument.createElement('div');
+        this.shadowRoot?.appendChild(container);
+
         firestoreReviews.forEach((data:Review) => {
             const comment = this.ownerDocument.createElement('my-comment')
             comment.setAttribute(CommentAttribute.name,data.user)
             comment.setAttribute(CommentAttribute.comment,data.comment)
-            comment.setAttribute(CommentAttribute.name,data.serie)
-            this.shadowRoot?.appendChild(comment);
+            comment.setAttribute(CommentAttribute.serie,data.serie)
+            container.appendChild(comment);
          })
         }}        
     }
