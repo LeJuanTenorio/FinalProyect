@@ -8,7 +8,8 @@ import { Screens } from "../../types/navigation";
 export enum CommentAttribute{
     "name" = "name",
     "comment" = "comment",
-    "serie" = "serie"
+    "serie" = "serie",
+    "poster" = "poster"
 }
 
 class Comment extends HTMLElement{
@@ -16,12 +17,14 @@ class Comment extends HTMLElement{
     name:string="";
     comment:string="";
     serie:string="";
+    poster:string="";
 
     static get observedAttributes(){
         const attrs: Record <CommentAttribute,null> = {
             name: null,
             comment: null,
-            serie: null
+            serie: null,
+            poster: null,
         }
         return Object.keys(attrs);
     }
@@ -60,12 +63,9 @@ class Comment extends HTMLElement{
             const commentsContainer = this.ownerDocument.createElement('div');
             commentsContainer.setAttribute('class','comments-container')
 
-            const seriesId = this.ownerDocument.createElement('id');
-            seriesId.id = `${this.serie}`;
-
             const posterImage = this.ownerDocument.createElement('img');
             posterImage.classList.add('poster');
-            posterImage.src = '';
+            posterImage.src = `${this.poster}`;
             commentsContainer.appendChild(posterImage);
 
             const commentParagraph = this.ownerDocument.createElement('p');

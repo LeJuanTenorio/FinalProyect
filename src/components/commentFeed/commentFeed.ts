@@ -36,6 +36,7 @@ class CommentFeed extends HTMLElement{
             comment.setAttribute(CommentAttribute.name,data.user)
             comment.setAttribute(CommentAttribute.comment,data.comment)
             comment.setAttribute(CommentAttribute.serie,data.serie)
+            comment.setAttribute(CommentAttribute.poster,data.poster)
             container.appendChild(comment);
          })
         }}        

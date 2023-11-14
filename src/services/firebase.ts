@@ -60,9 +60,13 @@ export const getReviews = async () => {
   const allReviews: Array<Review> = [];
 
   for (const doc of seriesDataSnapshot.docs) {
+    const seriesData = doc.data();
     const querySnapshot = await getDocs(collection(doc.ref, 'reviews'));
+
     querySnapshot.forEach((review) => {
       const data: Omit<Review, "id"> = review.data() as any;
+      data.serie = seriesData.title;
+      data.poster = seriesData.poster;
       allReviews.push({ id: review.id, ...data});
     });
   }
