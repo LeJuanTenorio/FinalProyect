@@ -1,5 +1,5 @@
 import CommentFeedStyle from "./commentFeed.css"
-import Firebase, { getReview } from "../../services/firebase"
+import Firebase, { getReview, } from "../../services/firebase"
 import { Review } from "../../types/dataManage";
 import Comment, {CommentAttribute} from "../comment/comment";
 
@@ -29,6 +29,7 @@ class CommentFeed extends HTMLElement{
             </style>
             `
         const container = this.ownerDocument.createElement('div');
+        container.className = "container";
         this.shadowRoot?.appendChild(container);
 
         firestoreReviews.forEach((data:Review) => {
