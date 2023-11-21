@@ -1,0 +1,11 @@
+.feed{
+    display: flex;
+    flex-direction: column;
+    width:70vw;
+    height:100vh;
+}
+
+.lowerFeed{
+    display: flex;
+    flex-direction: row;
+}
