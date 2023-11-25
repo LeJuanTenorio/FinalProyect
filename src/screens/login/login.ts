@@ -1,6 +1,9 @@
 import { dispatch } from "../../store/index"
 import { navigate } from "../../store/actions"
 import { Screens } from "../../types/navigation"
+import styles from "./styles.css";
+
+
 
 class Login extends HTMLElement {
     constructor() {
@@ -14,36 +17,55 @@ class Login extends HTMLElement {
 
     handleLoginButton() {
         dispatch(navigate(Screens.DASHBOARD));
+        console.log("prueba");
     }
 
     render() {
-        const title = this.ownerDocument.createElement("h1");
-        title.innerText = "Welcome! please sign in";
-        this.shadowRoot?.appendChild(title);
+        if(this.shadowRoot){
+            this.shadowRoot.innerHTML = `
+            <style>
+            ${styles}
+            </style>
+    
+            <body>
+            <img class ="background" src="https://www.themoviedb.org/t/p/original/cCVyNQkFZxLAC5jKXgO7EsJlDNd.jpg">
+    <section>
 
-        const email = this.ownerDocument.createElement("input");
-        email.placeholder = "email";
-        email.type = "email";
-        email.addEventListener(
-        "change",
-        (e: any) => (console.log(e))
-        );
-        this.shadowRoot?.appendChild(email);
-
-        const password = this.ownerDocument.createElement("input");
-        password.placeholder = "*********";
-        password.type = "password";
-        password.addEventListener(
-        "change",
-        (e: any) => (console.log(e))
-        );
-        this.shadowRoot?.appendChild(password);
-
-        const loginBtn = this.ownerDocument.createElement("button");
-        loginBtn.innerText = "login";
-        loginBtn.addEventListener("click", this.handleLoginButton);
-        this.shadowRoot?.appendChild(loginBtn);
+        <div class="formulario-inicio">
+            <p class="titulo">INICIA SESIÓN</p> 
+            <form id="formulario-login">
+                <input class="form-control" type="email" id="correo"  placeholder="Correo electrónico" />
+                <input class="form-control" type="password" id="contrasena"  placeholder= "Contraseña" />
+                
+                <form action="./perfiles-.html">
+                <input type="submit" class="loginBtn" id="loginBtn" value="Iniciar Sesión">
+                </form>
+            </form>
+        
+            <div class="recuerdame">
+                <div id="boton-check">
+                    <input type="checkbox" id="btn-switch">
+                    <label for="btn-switch" class="lbl-switch"></label>
+                </div>
+                <label class="label">Recuerdame</label>
+                <a class="ayuda" href="#">¿Necesitas Ayuda?</a>
+            </div>
+           
+            <div class="registrate">
+                <label class="labelp">¿Primera vez en SPHERE?</label>
+                <div class="boton-registro">
+                    <button id="boton-registro" href = "./registro.html" class="form-control">Registrate</button>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+</body>`;
+            const loginBtn = this.shadowRoot.querySelector("loginBtn");
+            loginBtn?.addEventListener("click", this.handleLoginButton);
+             
+        }}
     }
-}
+        
 
 customElements.define("app-login", Login);

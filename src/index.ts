@@ -39,7 +39,7 @@ class AppContainer extends HTMLElement {
             break;
     
         case Screens.SIGNUP:
-            const signUp = this.ownerDocument.createElement("app-signUp");
+            const signUp = this.ownerDocument.createElement("ernesto-torres");
             this.shadowRoot?.appendChild(signUp);
             break;
         

@@ -11,7 +11,7 @@ onAuthStateChanged(auth, (user)=>{
     user.uid !== null ? dispatch(setUserCredentials(user.uid)) : '';
     dispatch(navigate(Screens.DASHBOARD));
   }else {
-    dispatch(navigate(Screens.LOGIN));
+    dispatch(navigate(Screens.SIGNUP));
   }
 })
 
