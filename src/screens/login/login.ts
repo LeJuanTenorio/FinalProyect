@@ -54,8 +54,9 @@ class Login extends HTMLElement {
             emailInput.type = 'email';
             emailInput.id = 'correo';
             emailInput.placeholder = 'Correo electrónico';
-            formularioLogin.appendChild(emailInput);
             emailInput.addEventListener("change", this.changeEmail);
+            formularioLogin.appendChild(emailInput);
+            
     
             const passwordInput = this.ownerDocument.createElement('input');
             passwordInput.classList.add('form-control', 'password');
