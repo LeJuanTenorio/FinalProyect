@@ -2,7 +2,15 @@ import { dispatch } from "../../store/index"
 import { navigate } from "../../store/actions"
 import { Screens } from "../../types/navigation"
 import styles from "./styles.css";
+import firebase from "../../services/firebase";
 
+const formPost = {
+    username:"",
+    name:"",
+    email: "",
+    phone: "",
+    password: "",
+};
 
 
 class SignUp extends HTMLElement {
@@ -15,8 +23,27 @@ class SignUp extends HTMLElement {
         this.render();
     }
 
-    handleLoginButton() {
-        dispatch(navigate(Screens.DASHBOARD));
+    submitSignUp(event:any){
+        event.preventDefault();
+        console.log("stuff")
+        firebase.createUser(formPost.email,formPost.password,formPost.name);
+    }
+
+    changeEmail(e: any){
+        formPost.email = e.target.value;
+        console.log(e.target.value)
+    }
+
+    changePassword(e:any){
+        formPost.password = e.target.value;
+    }
+
+    changeUsername(e:any){
+        formPost.username = e.target.value;
+    }
+
+    changePhone(e:any){
+        formPost.phone = e.target.value;
     }
 
     render() {
@@ -36,12 +63,11 @@ class SignUp extends HTMLElement {
             <p class="titulo"">REGISTRATE</p> 
 
             <form id="formulario-registro">    
-                <input class="form-control" type="text" id="nombre" required placeholder= "Nombre" />
-                <input class="form-control" type="text" id="apellido" required placeholder= "Apellido" />
-                <input class="form-control" type="tel" id="telefono" placeholder= "Telefono" />
-                <input class="form-control" type="email" id="correo" required placeholder= "Correo" />
-                <input class="form-control" type="password" id="contrasena" required placeholder="Contraseña" />
-                <input class="form-control" type="submit" id="registrarse" value="Registrarme" />
+                <input class="form-control" class="username" type="text" id="nombre" required placeholder= "Username" />
+                <input class="form-control" class="phone" type="tel" id="telefono" placeholder= "Telefono" />
+                <input class="form-control" class="email" type="email" id="correo" required placeholder= "Correo" />
+                <input class="form-control" class="password" type="password" id="contrasena" required placeholder="Contraseña" />
+                <input class="form-control" class="register" type="submit" id="registrarse" value="Registrarme" />
             </form>
 
             <div id="lista"></div>
@@ -51,7 +77,6 @@ class SignUp extends HTMLElement {
                     <input type="checkbox" id="btn-switch" required />
                     <label for="btn-switch" class="lbl-switch"></label>
                 </div>
-                <label>Acepto los terminos y politicas de privacidad</label>
             </div>
             
             <div class="inicia-sesion">
@@ -59,8 +84,17 @@ class SignUp extends HTMLElement {
             </div>
         </div>
     </section>
+
+    
 </body>`;
-            
+            const email = this.shadowRoot.querySelector(".email")
+            email?.addEventListener("change", this.changeEmail);
+
+            const password = this.shadowRoot.querySelector(".password")
+            password?.addEventListener("change", this.changePassword);
+
+            const loginBtn = this.shadowRoot.querySelector(".register");
+            loginBtn?.addEventListener("click", this.submitSignUp);
         }}
     }
         

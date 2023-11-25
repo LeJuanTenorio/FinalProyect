@@ -110,7 +110,7 @@ const getUser = async (user: string) => {
   return transformed;
 };
 
-const createUser = async (email:string, password: string, name: string, age: number) => {
+const createUser = async (email:string, password: string, name: string) => {
   createUserWithEmailAndPassword(auth,email,password).then(async (userCredential) => {
     const user = userCredential.user;
     console.log(user.uid);
@@ -119,7 +119,6 @@ const createUser = async (email:string, password: string, name: string, age: num
       const where = doc(db, "users", user.uid);
       const data = {
         name: name,
-        age: age
       }
       await setDoc(where, data);
       console.log("Se añadió")

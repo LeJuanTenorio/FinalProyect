@@ -1,9 +1,10 @@
-import { dispatch } from "../../store/index"
-import { navigate } from "../../store/actions"
-import { Screens } from "../../types/navigation"
 import styles from "./styles.css";
+import firebase from "../../services/firebase";
 
-
+const formPost = {
+    email: "",
+    password: "",
+};
 
 class Login extends HTMLElement {
     constructor() {
@@ -15,9 +16,16 @@ class Login extends HTMLElement {
         this.render();
     }
 
-    handleLoginButton() {
-        dispatch(navigate(Screens.DASHBOARD));
-        console.log("prueba");
+    submitLogin(){
+        firebase.logIn(formPost.email,formPost.password);
+    }
+
+    changeEmail(e: any){
+        formPost.email = e.target.value;
+    }
+
+    changePassword(e:any){
+        formPost.password = e.target.value;
     }
 
     render() {
@@ -34,8 +42,8 @@ class Login extends HTMLElement {
         <div class="formulario-inicio">
             <p class="titulo">INICIA SESIÓN</p> 
             <form id="formulario-login">
-                <input class="form-control" type="email" id="correo"  placeholder="Correo electrónico" />
-                <input class="form-control" type="password" id="contrasena"  placeholder= "Contraseña" />
+                <input class="form-control" class="email" type="email" id="correo"  placeholder="Correo electrónico" />
+                <input class="form-control" class="password" type="password" id="contrasena"  placeholder= "Contraseña" />
                 
                 <form action="./perfiles-.html">
                 <input type="submit" class="loginBtn" id="loginBtn" value="Iniciar Sesión">
@@ -54,16 +62,21 @@ class Login extends HTMLElement {
             <div class="registrate">
                 <label class="labelp">¿Primera vez en SPHERE?</label>
                 <div class="boton-registro">
-                    <button id="boton-registro" href = "./registro.html" class="form-control">Registrate</button>
+                    <button id="boton-registro" class="botonRegistro" href = "./registro.html" class="form-control">Registrate</button>
                 </div>
             </div>
             
         </div>
     </section>
 </body>`;
-            const loginBtn = this.shadowRoot.querySelector("loginBtn");
-            loginBtn?.addEventListener("click", this.handleLoginButton);
-             
+            const email = this.shadowRoot.querySelector(".email")
+            email?.addEventListener("change", this.changeEmail);
+
+            const password = this.shadowRoot.querySelector(".password")
+            password?.addEventListener("change", this.changePassword);
+
+            const loginBtn = this.shadowRoot.querySelector(".loginBtn");
+            loginBtn?.addEventListener("click", this.submitLogin);
         }}
     }
         

@@ -1,7 +1,7 @@
 import { SidebarRight, Feed } from "..";
-import styles from "./mainDash.css"
+import styles from "./mainSearch.css"
 
-class DashMain extends HTMLElement{
+class SearchComponent extends HTMLElement{
 
     constructor(){
         super();
@@ -14,20 +14,14 @@ class DashMain extends HTMLElement{
 
     render(){
         if(this.shadowRoot){
-            this.shadowRoot.innerHTML = `
-            <section class="mainDash">
-            <main-feed></main-feed>
-            <sidebar-right></sidebar-right>
-            </section>
-            
+            this.shadowRoot.innerHTML = `            
                 <style>
                 ${styles}
                 <style>
             `
-            console.log("mainDash")
         }}
     }
 
-customElements.define("main-dash", DashMain);
-export default DashMain;
+customElements.define("search-element", SearchComponent);
+export default SearchComponent;
 
