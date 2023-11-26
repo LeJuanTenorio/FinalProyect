@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, getDoc, setDoc, addDoc, getDocs, QuerySnapshot,} from "firebase/firestore";
 import { Series, User, Review} from "../types/dataManage";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth";
-
+import storage from "../utils/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBM7MOyoSUmSkRCHOFqk5tVGCGtHjKHPqk",
@@ -188,6 +188,16 @@ const getUserUID = () => {
   });
 };
 
+const favoriteSeriesID = async () => {
+  try {
+    const userFound = await storage.getUserFromStorage();
+    const favoritesArray = await getFavoritesId(userFound); 
+    console.log("favoritos", favoritesArray);
+  } catch (error) {
+    console.error("Error in series:", error);
+  }
+}
+
 
 
 export const signUserOut = async () => {
@@ -213,6 +223,7 @@ export default {
   createUser,
   logIn,
   getFavoritesId,
+  getDocById,
   signUserOut,
   getUserUID,
 }

@@ -37,6 +37,7 @@ export enum PersistanceKeys {
         const parse = JSON.parse(getUserFromStorage);
         const userFound = parse.user;
         console.log("GOTTTTTTTTTTTTTT" + userFound);
+        return userFound
     } else {
         console.log("No data found in storage");
     }} 

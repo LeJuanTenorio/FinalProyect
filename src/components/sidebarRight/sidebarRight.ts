@@ -29,16 +29,8 @@ class SidebarRight extends HTMLElement {
 
   }
 
-  async getUser() {
-    return await storage.getUserFromStorage();
-  }
-
   connectedCallback() {
     this.render();
-  }
-
-  async getFavorites(){
-    return await Firebase.getFavoritesId(this.getUser())
   }
 
  async render() {
@@ -68,7 +60,19 @@ class SidebarRight extends HTMLElement {
 
       console.log("SidebarRight");
 
-      const series = await this.getFavorites()
+      const series = async () => {
+        try {
+          const userFound = await storage.getUserFromStorage();
+          const favoritesArray = await Firebase.getFavoritesId(userFound); 
+          console.log("favoritos", favoritesArray);
+          for (const serie of favoritesArray) {
+            const serieMatch = await Firebase.getDocById("SeriesData", serie);
+            console.log("serieMATCH", serieMatch?.data());
+          }
+        } catch (error) {
+          console.error("Error in series:", error);
+        }
+      }
       const people = await Firebase.getUsers();
 
 
@@ -87,7 +91,7 @@ class SidebarRight extends HTMLElement {
         friendElement.setAttribute('class','friend');
       })
 
-      return series
+      series();
 
     }
   }
