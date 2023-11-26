@@ -67,7 +67,12 @@ class SidebarRight extends HTMLElement {
           console.log("favoritos", favoritesArray);
           for (const serie of favoritesArray) {
             const serieMatch = await Firebase.getDocById("SeriesData", serie);
-            console.log("serieMATCH", serieMatch?.data());
+            const serieData = serieMatch?.data()
+            console.log("serieMATCH", serieData);
+            const poster = this.ownerDocument.createElement('img')
+            poster.className = "favorites-poster"
+            poster.src = serieData?.poster
+            favoriteContainer?.appendChild(poster)
           }
         } catch (error) {
           console.error("Error in series:", error);
