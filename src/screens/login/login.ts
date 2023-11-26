@@ -1,5 +1,6 @@
 import styles from "./styles.css";
 import firebase from "../../services/firebase";
+import { addObserver } from "../../store";
 
 const formPost = {
     email: "",
@@ -14,6 +15,7 @@ class Login extends HTMLElement {
 
     connectedCallback() {
         this.render();
+        addObserver(this);
     }
 
     submitLogin(){

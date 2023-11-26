@@ -1,8 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, setDoc, addDoc, getDocs, QuerySnapshot,} from "firebase/firestore";
+import { getFirestore, collection, doc, getDoc, setDoc, addDoc, getDocs, QuerySnapshot,} from "firebase/firestore";
 import { Series, User, Review} from "../types/dataManage";
-import { userData } from "../components/data/userData";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "firebase/auth";
 
 
 const firebaseConfig = {
@@ -46,7 +45,7 @@ export const getSerie = async (serie:any) => {
 };
 
 export const getUsers = async () => {
-  const querySnapshot = await getDocs(collection(db, "UserData"));
+  const querySnapshot = await getDocs(collection(db, "user"));
   const transformed: Array<User> = [];
 
   querySnapshot.forEach((doc) => {
@@ -92,22 +91,6 @@ export const getReview = async (specifiedTitle: string) => {
   }
 
   return allReviews;
-};
-
-const getUser = async (user: string) => {
-  const querySnapshot = await getDocs(collection(db, "UserData"));
-  const transformed: Array<User> = [];
-
-  for (const doc of querySnapshot.docs) {
-    const userName = doc.data().Name;
-
-    if (user === userName) {
-      const userData = doc.data() as Omit<User, "id">;
-      transformed.push({ id: doc.id, ...userData });
-    }
-  }
-  
-  return transformed;
 };
 
 const createUser = async (email:string, password: string, name: string) => {
@@ -157,16 +140,49 @@ const addReview = async (serieTitle: any, post: Omit<Review, "id">) => {
   }
 };
 
-// const getFavoritesId = async (user:string) => {
-//   try {
-//     const userInfo = await getUser(user);
-//     const favoritesIds = userInfo.favorites;
-//     return favoritesIds;
-//   } catch (error) {
-//     console.error('Error fetching user info:', error);
-//     return [];
-//   }
-// };
+const getUserinfo = async (user: string) => {
+  const querySnapshot = await getDocs(collection(db, "user"));
+  const transformed: Array<User> = [];
+
+  for (const doc of querySnapshot.docs) {
+    const userName = doc.data().Name;
+
+    if (user === userName) {
+      const user = doc.data() as Omit<User, "id">;
+      transformed.push({ id: doc.id, ...user });
+    }
+  }
+  
+  return transformed;
+};
+
+const getDocById = async (collection:string,id:string) => {
+  try {
+    const docRef = doc(db,collection,id)
+    const gotDocById = await getDoc(docRef)
+    return gotDocById
+  } catch (error) {
+  }
+};
+
+ const getFavorites = async (userID:string) => {
+  try {
+    const gettingDoc = await getDocById("users",userID)
+    let favoritesArray = []
+    favoritesArray = gettingDoc?.data()?.favorites
+    
+    return favoritesArray;
+  } catch {}
+};
+
+export const signUserOut = async () => {
+  try {
+      await signOut(auth);
+      console.log(`$signed out successfully.`);
+  } catch (error) {
+      console.error(`Error signing out:`, error);
+  }
+};
 
 
 
@@ -175,11 +191,12 @@ export default {
   getSeries,
   getSerie, 
   getUsers, 
-  getUser,
+  getUserinfo,
   getReviews,
   getReview,
   addReview,
   createUser,
   logIn,
-  //getFavoritesId,
+  getFavorites,
+  signUserOut,
 }
