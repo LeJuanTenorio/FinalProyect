@@ -1,12 +1,13 @@
-import { Poster, Modal, } from ".."; 
+import { Poster, Modal, } from "..";
 import { Attribute } from "../seriesPoster/poster";
 import style from "./sidebarRight.css";
-
 import "../../components/index"
 import styles from "./styles.css"
 import { Series, User } from "../../types/dataManage";
 import { Firestore } from "firebase/firestore";
 import Firebase from "../../services/firebase"
+import storage  from "../../utils/storage";
+import { PersistanceKeys } from "../../utils/storage";
 
 const seriesData: Series = {
     id:"",
@@ -19,6 +20,8 @@ const seriesData: Series = {
 
 class SidebarRight extends HTMLElement {
 
+  user?: "";
+
   constructor() {
     super();
 
@@ -26,8 +29,16 @@ class SidebarRight extends HTMLElement {
 
   }
 
+  async getUser() {
+    return await storage.getUserFromStorage();
+  }
+
   connectedCallback() {
     this.render();
+  }
+
+  async getFavorites(){
+    return await Firebase.getFavoritesId(this.getUser())
   }
 
  async render() {
@@ -43,7 +54,7 @@ class SidebarRight extends HTMLElement {
             <h1>Friends</h1>
           </div>
         </section>
-        
+
         <style>
           ${style}
         </style>
@@ -53,23 +64,21 @@ class SidebarRight extends HTMLElement {
       const favoriteContainer = this.shadowRoot.querySelector(".favoriteContainer");
       const friendContainer = this.shadowRoot.querySelector(".friendContainer");
 
-      
+
 
       console.log("SidebarRight");
 
-      const series = await Firebase.getSeries();
-      const seriesReview = await Firebase.getReviews();
-      const seriesReviewSpecific = await Firebase.getReview("Dark");
+      const series = await this.getFavorites()
       const people = await Firebase.getUsers();
-      
 
-      series.forEach((series:Series)=>{
-        const posterElement = document.createElement('img');
-        posterElement.src = series.poster;
-        favoriteContainer?.appendChild(posterElement);
-        posterElement.setAttribute('class', 'favorites-poster');
-        //console.log(series);
-      }) 
+
+      // series.forEach((series:Series)=>{
+      //   const posterElement = document.createElement('img');
+      //   posterElement.src = series.poster;
+      //   favoriteContainer?.appendChild(posterElement);
+      //   posterElement.setAttribute('class', 'favorites-poster');
+      //   //console.log(series);
+      // })
 
       people.forEach((user:User)=>{
         const friendElement = document.createElement('img');
@@ -77,8 +86,8 @@ class SidebarRight extends HTMLElement {
         friendContainer?.appendChild(friendElement);
         friendElement.setAttribute('class','friend');
       })
-      
-      
+
+      return series
 
     }
   }

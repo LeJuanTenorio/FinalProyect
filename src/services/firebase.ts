@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, getDoc, setDoc, addDoc, getDocs, QuerySnapshot,} from "firebase/firestore";
 import { Series, User, Review} from "../types/dataManage";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth";
 
 
 const firebaseConfig = {
@@ -16,6 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 export const auth = getAuth(app);
+export const user = auth.currentUser;
 
 export const getSeries = async () => {
   const querySnapshot = await getDocs(collection(db, "SeriesData"));
@@ -165,15 +166,29 @@ const getDocById = async (collection:string,id:string) => {
   }
 };
 
- const getFavorites = async (userID:string) => {
+ const getFavoritesId = async (userID:any) => {
   try {
     const gettingDoc = await getDocById("users",userID)
     let favoritesArray = []
     favoritesArray = gettingDoc?.data()?.favorites
-    
+    console.log("favoritos" + favoritesArray)
     return favoritesArray;
   } catch {}
 };
+
+const getUserUID = () => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid:string = user.uid;
+      console.log("User UID:", uid);
+      return uid
+    } else {
+      console.log("User is signed out");
+    }
+  });
+};
+
+
 
 export const signUserOut = async () => {
   try {
@@ -197,6 +212,7 @@ export default {
   addReview,
   createUser,
   logIn,
-  getFavorites,
+  getFavoritesId,
   signUserOut,
+  getUserUID,
 }

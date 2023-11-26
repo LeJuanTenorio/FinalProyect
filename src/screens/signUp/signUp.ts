@@ -165,8 +165,6 @@ class SignUp extends HTMLElement {
             iniciarSessionBtn.addEventListener("click",()=>this.toLogIN())
             inicioSesionDiv.appendChild(iniciarSessionBtn);
             
-            
-    
             cuadroDiv.appendChild(inicioSesionDiv);
     
             section.appendChild(cuadroDiv);

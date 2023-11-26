@@ -10,6 +10,7 @@ onAuthStateChanged(auth, (user)=>{
   if(user){
     user.uid !== null ? dispatch(setUserCredentials(user.uid)) : '';
     dispatch(navigate(Screens.DASHBOARD));
+    console.log("appstate is" + JSON.stringify(appState))
   }else {
     dispatch(navigate(Screens.LOGIN));
   }
