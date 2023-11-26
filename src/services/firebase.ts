@@ -123,7 +123,7 @@ const logIn = (email: string, password: string) => {
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.error(errorMessage);
+    console.error("loginissue" + errorMessage);
   });
 }
 

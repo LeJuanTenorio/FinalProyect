@@ -76,10 +76,8 @@ class Login extends HTMLElement {
 
     
             const formAction = this.ownerDocument.createElement('form');
-            formAction.action = './perfiles-.html';
     
             const loginBtnInput = this.ownerDocument.createElement('input');
-            loginBtnInput.type = 'submit';
             loginBtnInput.classList.add('loginBtn');
             loginBtnInput.id = 'loginBtn';
             loginBtnInput.value = 'Iniciar Sesión';
