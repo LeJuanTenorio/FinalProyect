@@ -1,6 +1,8 @@
 import styles from "./styles.css";
 import firebase from "../../services/firebase";
-import { addObserver } from "../../store";
+import { addObserver, dispatch } from "../../store";
+import { navigate } from "../../store/actions";
+import { Screens } from "../../types/navigation";
 
 const formPost = {
     email: "",
@@ -28,6 +30,10 @@ class Login extends HTMLElement {
 
     changePassword(e:any){
         formPost.password = e.target.value;
+    }
+
+    toRegister(){
+        dispatch(navigate(Screens.SIGNUP));
     }
 
     render() {
@@ -127,6 +133,8 @@ class Login extends HTMLElement {
             botonRegistroBtn.id = 'boton-registro';
             botonRegistroBtn.classList.add('botonRegistro', 'form-control');
             botonRegistroBtn.textContent = 'Registrate';
+            botonRegistroBtn.addEventListener("click",()=>this.toRegister())
+            
     
             botonRegistroDiv.appendChild(botonRegistroBtn);
     
