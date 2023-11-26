@@ -22,6 +22,10 @@ class SignUp extends HTMLElement {
         this.render();
     }
 
+    toLogIN(){
+        dispatch(navigate(Screens.LOGIN));
+    }
+
     submitSignUp(event:any){
         event.preventDefault();
         console.log("stuff")
@@ -149,10 +153,19 @@ class SignUp extends HTMLElement {
             const inicioSesionDiv = this.ownerDocument.createElement('div');
             inicioSesionDiv.classList.add('inicia-sesion');
     
-            const labelInicioSesion = this.ownerDocument.createElement('label');
+            const labelInicioSesion = this.ownerDocument.createElement('label');const iniciaSesion = this.ownerDocument.createElement('div')
             labelInicioSesion.classList.add('label');
-            labelInicioSesion.innerHTML = '¿Ya tienes una cuenta? <a href="/iniciar-sesion.html">Inicia Sesión</a>';
+            labelInicioSesion.innerHTML = '¿Ya tienes una cuenta?';
             inicioSesionDiv.appendChild(labelInicioSesion);
+
+            const iniciarSessionBtn = this.ownerDocument.createElement('button');
+            iniciarSessionBtn.id = 'boton-logIn';
+            iniciarSessionBtn.classList.add('botonLogIn', 'form-control');
+            iniciarSessionBtn.textContent = 'Inicia sesión';
+            iniciarSessionBtn.addEventListener("click",()=>this.toLogIN())
+            inicioSesionDiv.appendChild(iniciarSessionBtn);
+            
+            
     
             cuadroDiv.appendChild(inicioSesionDiv);
     
