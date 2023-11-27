@@ -17,12 +17,10 @@ class CommentFeed extends HTMLElement{
     }
     
     async connectedCallback() {  
-        const firestoreReviews = await this.getFirestoreReviews();
-        this.render(firestoreReviews);
-        console.log(firestoreReviews);
+        this.render();
     }
 
-   async render(firestoreReviews:any){
+   async render(){
         if(this.shadowRoot && this.shadowRoot.innerHTML === ''){
             this.shadowRoot.innerHTML = `
             <style>
@@ -33,6 +31,7 @@ class CommentFeed extends HTMLElement{
         container.className = "container";
         this.shadowRoot?.appendChild(container);
 
+        const firestoreReviews = await this.getFirestoreReviews();
         firestoreReviews.forEach((data:Review) => {
             const comment = this.ownerDocument.createElement('my-comment')
             comment.setAttribute(CommentAttribute.name,data.user)
