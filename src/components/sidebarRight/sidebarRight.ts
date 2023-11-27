@@ -1,22 +1,9 @@
-import { Poster, Modal, } from "..";
-import { Attribute } from "../seriesPoster/poster";
+
 import style from "./sidebarRight.css";
 import "../../components/index"
-import styles from "./styles.css"
 import { Series, User } from "../../types/dataManage";
-import { Firestore } from "firebase/firestore";
 import Firebase from "../../services/firebase"
 import storage  from "../../utils/storage";
-import { PersistanceKeys } from "../../utils/storage";
-
-const seriesData: Series = {
-    id:"",
-    title: "",
-    poster: "",
-    synopsis: "",
-    logo_title: "",
-    background: "",
-}
 
 class SidebarRight extends HTMLElement {
 

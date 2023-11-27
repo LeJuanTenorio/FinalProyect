@@ -23,5 +23,11 @@ body::-webkit-scrollbar{
     top: 0;
     left: 0;
     display: flex;
+}
 
+.seriesInfo{
+    display: flex;
+    flex-direction: row;
+    width:95vw;
+    height:100%;
 }
