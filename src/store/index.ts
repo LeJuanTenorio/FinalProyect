@@ -1,7 +1,7 @@
 import Storage, { PersistanceKeys } from "../utils/storage";
 import { onAuthStateChanged } from "firebase/auth";
 import { Actions, AppState, Observer } from "../types/store";
-import { auth } from "../services/firebase";
+import { auth } from "../utils/firebase";
 import { reducer } from "./reducer";
 import { Screens } from "../types/navigation";
 import { navigate, setUserCredentials } from "./actions";

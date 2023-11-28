@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, getDoc, setDoc, addDoc, getDocs,} from "firebase/firestore";
 import { Series, User, Review} from "../types/dataManage";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth";
-import storage from "../utils/storage";
+import storage from "./storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBM7MOyoSUmSkRCHOFqk5tVGCGtHjKHPqk",
@@ -20,41 +20,41 @@ export const user = auth.currentUser;
 
 export const getSeries = async () => {
   const querySnapshot = await getDocs(collection(db, "SeriesData"));
-  const transformed: Array<Series> = [];
+  const gotArray: Array<Series> = [];
 
   querySnapshot.forEach((doc) => {
     const data: Omit<Series, "id"> = doc.data() as any;
-    transformed.push({ id: doc.id, ...data });
+    gotArray.push({ id: doc.id, ...data });
   });
 
-  return transformed;
+  return gotArray;
 };
 
 export const getSerie = async (serie:any) => {
   const querySnapshot = await getDocs(collection(db, "SeriesData"));
-  const transformed: Array<Series> = [];
+  const gotArray: Array<Series> = [];
 
   for (const doc of querySnapshot.docs) {
     const titlesList = doc.data().title; 
 
     if(serie === titlesList){
       const serieData = doc.data() as Omit<Series,"id">
-      transformed.push({id: doc.id, ...serieData})
+      gotArray.push({id: doc.id, ...serieData})
     };
   }
-  return transformed;
+  return gotArray;
 };
 
 export const getUsers = async () => {
   const querySnapshot = await getDocs(collection(db, "user"));
-  const transformed: Array<User> = [];
+  const gotArray: Array<User> = [];
 
   querySnapshot.forEach((doc) => {
     const data: Omit<User, "id"> = doc.data() as any;
-    transformed.push({ id: doc.id, ...data });
+    gotArray.push({ id: doc.id, ...data });
   });
 
-  return transformed;
+  return gotArray;
 };
 
 export const getReviews = async () => {
@@ -143,18 +143,18 @@ const addReview = async (serieTitle: any, post: Omit<Review, "id">) => {
 
 const getUserinfo = async (user: string) => {
   const querySnapshot = await getDocs(collection(db, "user"));
-  const transformed: Array<User> = [];
+  const gotArray: Array<User> = [];
 
   for (const doc of querySnapshot.docs) {
     const userName = doc.data().Name;
 
     if (user === userName) {
       const user = doc.data() as Omit<User, "id">;
-      transformed.push({ id: doc.id, ...user });
+      gotArray.push({ id: doc.id, ...user });
     }
   }
   
-  return transformed;
+  return gotArray;
 };
 
 const getDocById = async (collection:string,id:string) => {
@@ -197,8 +197,6 @@ const favoriteSeriesID = async () => {
     console.error("Error in series:", error);
   }
 }
-
-
 
 export const signUserOut = async () => {
   try {

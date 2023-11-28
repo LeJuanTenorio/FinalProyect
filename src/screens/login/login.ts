@@ -1,5 +1,5 @@
 import styles from "./styles.css";
-import firebase from "../../services/firebase";
+import firebase from "../../utils/firebase";
 import { addObserver, dispatch } from "../../store";
 import { navigate } from "../../store/actions";
 import { Screens } from "../../types/navigation";

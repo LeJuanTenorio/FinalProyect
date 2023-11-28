@@ -1,7 +1,7 @@
 import { Poster, Modal } from ".."; 
 import style from "./megaReview.css";
 import { Series } from "../../types/dataManage";
-import Firebase from "../../services/firebase"
+import Firebase from "../../utils/firebase"
 import { dispatch } from "../../store";
 import { navigate } from "../../store/actions";
 import { Screens } from "../../types/navigation";

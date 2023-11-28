@@ -1,6 +1,6 @@
 import CommentStyle from "./comment.css"
 import { Review } from "../../types/dataManage";
-import Firebase, { getReview } from "../../services/firebase"
+import Firebase, { getReview } from "../../utils/firebase"
 import { dispatch } from "../../store";
 import { navigate } from "../../store/actions";
 import { Screens } from "../../types/navigation";

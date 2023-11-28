@@ -1,5 +1,5 @@
 import style from "./styles.css";
-import firebase from "../../services/firebase";
+import firebase from "../../utils/firebase";
 import { Series } from "../../types/dataManage";
 
 

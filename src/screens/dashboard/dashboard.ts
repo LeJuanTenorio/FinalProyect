@@ -2,7 +2,7 @@ import "../../components/index"
 import styles from "./styles.css"
 import { Series } from "../../types/dataManage";
 import { Firestore } from "firebase/firestore";
-import Firebase from "../../services/firebase"
+import Firebase from "../../utils/firebase"
 
 const seriesData: Series = {
     id:"",

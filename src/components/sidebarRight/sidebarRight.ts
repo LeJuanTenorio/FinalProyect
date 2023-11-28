@@ -2,7 +2,7 @@
 import style from "./sidebarRight.css";
 import "../../components/index"
 import { Series, User } from "../../types/dataManage";
-import Firebase from "../../services/firebase"
+import Firebase from "../../utils/firebase"
 import storage  from "../../utils/storage";
 
 class SidebarRight extends HTMLElement {

@@ -2,7 +2,7 @@ import SidebarStyle from "./sidebar.css"
 import { dispatch } from "../../store";
 import { navigate, setUserCredentials } from "../../store/actions";
 import { Screens } from "../../types/navigation";
-import { signUserOut } from "../../services/firebase";
+import { signUserOut } from "../../utils/firebase";
 
 
 class Sidebar extends HTMLElement {

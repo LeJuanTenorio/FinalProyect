@@ -2,7 +2,7 @@ import { dispatch } from "../../store/index"
 import { navigate } from "../../store/actions"
 import { Screens } from "../../types/navigation"
 import styles from "./styles.css";
-import firebase from "../../services/firebase";
+import firebase from "../../utils/firebase";
 
 const formPost = {
     name:"",
