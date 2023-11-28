@@ -20,13 +20,19 @@ class SeriesInfo extends HTMLElement {
     this.attachShadow({ mode: "open" });
   }
 
-  async getSerieInfo(serie:any){
-    firebase.getSerie(serie);
-    const seriesData = await firebase.getSerie(serie);
+  async getSerieName(){
+    const name = localStorage.getItem("SERIE")
+    return name
+  }
+
+  async getSerieInfo(){
+    const serieName = await this.getSerieName()
+    firebase.getSerie(serieName);
+    const seriesData = await firebase.getSerie(serieName);
     this.background = seriesData[0].background
     this.poster = seriesData[0].poster;
   }
-  
+
 
   submitReview(){
   }
@@ -34,7 +40,7 @@ class SeriesInfo extends HTMLElement {
 
   connectedCallback() {
     const fetchDataAndRender = async () => {
-      await this.getSerieInfo("Dark");
+      await this.getSerieInfo();
       this.render();
     };
     
