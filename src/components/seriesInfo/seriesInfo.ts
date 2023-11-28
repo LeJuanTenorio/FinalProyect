@@ -23,12 +23,14 @@ class SeriesInfo extends HTMLElement {
   async getSerieInfo(serie:any){
     firebase.getSerie(serie);
     const seriesData = await firebase.getSerie(serie);
+    this.background = seriesData[0].background
     this.poster = seriesData[0].poster;
   }
   
 
   submitReview(){
   }
+
 
   connectedCallback() {
     const fetchDataAndRender = async () => {
@@ -51,7 +53,7 @@ class SeriesInfo extends HTMLElement {
 
         const backgroundImg = this.ownerDocument.createElement('img');
         backgroundImg.classList.add('background');
-        backgroundImg.src = this.id
+        backgroundImg.src = this.background
         container.appendChild(backgroundImg);
 
         const upperInfoDiv = this.ownerDocument.createElement('div');
