@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, getDoc, setDoc, addDoc, getDocs,} from "firebase/firestore";
+import { getFirestore, collection, doc, orderBy, query, getDoc, setDoc, addDoc, getDocs, onSnapshot} from "firebase/firestore";
 import { Series, User, Review} from "../types/dataManage";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth";
 import storage from "./storage";
@@ -17,6 +17,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 export const auth = getAuth(app);
 export const user = auth.currentUser;
+
+
+
 
 export const getSeries = async () => {
   const querySnapshot = await getDocs(collection(db, "SeriesData"));
@@ -57,7 +60,32 @@ export const getUsers = async () => {
   return gotArray;
 };
 
-export const getReviews = async () => {
+const getReviewsLoop = (cb: (docs: Review[]) => void) => {
+  const queryReviews = query(collection(db, "reviews")); 
+  onSnapshot(queryReviews, (collection) => {
+    const docs: Review[] = collection.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as Review[];
+    cb(docs);
+  });
+};
+
+const getReviews = async(): Promise<Review[]> =>{
+  const reviews: Review[] = [];
+  const getReviews=query(collection(db,"reviews"), orderBy("createdAt"))
+  const querySnapshot = await getDocs(getReviews);
+
+  querySnapshot.forEach((doc) => {
+    console.log(`${doc.id} => ${doc.data()}`);
+    reviews.push({
+      ...doc.data()
+    }as Review)
+  });
+  return reviews
+}
+
+export const getReviewsDeprecated = async () => {
   const seriesDataSnapshot = await getDocs(collection(db, "SeriesData"));
   const allReviews: Array<Review> = [];
 
@@ -77,7 +105,7 @@ export const getReviews = async () => {
 };
 
 export const getReview = async (specifiedTitle: string) => {
-  const seriesDataSnapshot = await getDocs(collection(db, "SeriesData"));
+  const seriesDataSnapshot = await getDocs(collection(db, "reviews"));
   const allReviews: Array<Review> = [];
 
   for (const doc of seriesDataSnapshot.docs) {
@@ -216,6 +244,7 @@ export default {
   getUsers, 
   getUserinfo,
   getReviews,
+  getReviewsLoop,
   getReview,
   addReview,
   createUser,
