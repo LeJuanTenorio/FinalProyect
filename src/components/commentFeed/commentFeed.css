@@ -6,6 +6,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
+    padding-top: 70vh;
 }
 
 .container::-webkit-scrollbar{

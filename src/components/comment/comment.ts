@@ -75,28 +75,6 @@ class Comment extends HTMLElement{
             const horizontalLine = this.ownerDocument.createElement('hr');
             commentsContainer.appendChild(horizontalLine);
 
-            const commentForm = this.ownerDocument.createElement('form');
-            commentForm.id = 'comment-form';
-            
-            const saveIcon = this.ownerDocument.createElement('img');
-            saveIcon.src = 'https://cdn.iconscout.com/icon/free/png-256/free-save-3244517-2701888.png?f=webp';
-            commentForm.appendChild(saveIcon);
-
-            const heartIcon = this.ownerDocument.createElement('img');
-            heartIcon.src = 'https://www.iconpacks.net/icons/2/free-heart-icon-3510-thumb.png';
-            commentForm.appendChild(heartIcon);
-
-            const commentTextArea = this.ownerDocument.createElement('textarea');
-            commentTextArea.id = 'comment-text';
-            commentTextArea.placeholder = "What do you think of the show?";
-            commentForm.appendChild(commentTextArea);
-
-            const submitButton = this.ownerDocument.createElement('button');
-            submitButton.type = 'submit';
-            submitButton.innerText = 'Send';
-            commentForm.appendChild(submitButton);
-
-            commentsContainer.appendChild(commentForm);
             this.shadowRoot?.appendChild(commentsContainer);
         }}
 }
