@@ -21,3 +21,4 @@ export interface User {
     pic: string;
     favorites: Array<string>;
 }
+

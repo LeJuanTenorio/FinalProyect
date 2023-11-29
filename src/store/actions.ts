@@ -13,3 +13,10 @@ export const setUserCredentials = (user: string) => {
     payload: user
   }
 }
+
+export const setSeries = (series:string) => {
+  return{
+    type: "SETSERIES",
+    payload: series,
+  }
+}

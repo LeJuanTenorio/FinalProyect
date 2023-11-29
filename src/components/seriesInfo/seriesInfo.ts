@@ -1,6 +1,7 @@
 import style from "./styles.css";
 import firebase from "../../utils/firebase";
 import { Series } from "../../types/dataManage";
+import { appState } from "../../store";
 
 
 
@@ -21,7 +22,7 @@ class SeriesInfo extends HTMLElement {
   }
 
   async getSerieName(){
-    const name = localStorage.getItem("SERIE")
+    const name = appState.series
     return name
   }
 
@@ -43,7 +44,7 @@ class SeriesInfo extends HTMLElement {
       await this.getSerieInfo();
       this.render();
     };
-    
+    console.log("EREREWRERWER", appState)
     fetchDataAndRender();
   }
 

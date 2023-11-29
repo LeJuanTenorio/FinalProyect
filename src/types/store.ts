@@ -2,7 +2,7 @@ export type Observer = { render: () => void } & HTMLElement;
 
 export type AppState = {
     screen: string
-    serie: string
+    series: string
 }
 
 export enum ScreenActions {
