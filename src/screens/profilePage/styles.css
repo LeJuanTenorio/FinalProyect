@@ -1,3 +1,10 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    color:white;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
 .appContainer{
     display: flex;
     flex-direction: row;

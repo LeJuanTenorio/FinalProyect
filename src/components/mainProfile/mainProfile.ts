@@ -1,4 +1,3 @@
-
 import style from "./mainProfile.css";
 import "../../components/index"
 import { Series, User } from "../../types/dataManage";

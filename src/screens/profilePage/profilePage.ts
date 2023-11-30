@@ -21,7 +21,7 @@ class Profile extends HTMLElement{
     
             <section class="appContainer">
             <my-sidebar class="sidebar"></my-sidebar>
-            <profile-info></profile-info>
+            <profile-info class="profile-info"></profile-info>
             </section>
             `
         }}
