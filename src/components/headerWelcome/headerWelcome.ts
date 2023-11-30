@@ -16,7 +16,7 @@ class HeaderWelcome extends HTMLElement{
     render(){
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
-            <div class="container">
+            <header class="header">
             <user-info img="${userData[0].img}"></user-info>
             
             <div class="containerMessage">
@@ -26,7 +26,7 @@ class HeaderWelcome extends HTMLElement{
 
             
 
-            </div>
+            </header>
 
             <style>
             ${style}

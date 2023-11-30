@@ -2,14 +2,15 @@ import CommentStyle from "./comment.css"
 import { Review } from "../../types/dataManage";
 import Firebase, { getReview } from "../../utils/firebase"
 import { dispatch } from "../../store";
-import { navigate } from "../../store/actions";
+import { navigate, setSeries } from "../../store/actions";
 import { Screens } from "../../types/navigation";
+
 
 export enum CommentAttribute{
     "name" = "name",
     "comment" = "comment",
     "serie" = "serie",
-    "poster" = "poster"
+    "poster" = "poster",
 }
 
 class Comment extends HTMLElement{
@@ -47,6 +48,18 @@ class Comment extends HTMLElement{
         super();
         this.attachShadow({mode:"open"});
     }
+
+    addToLocalStorage(key:string, value:string) {
+        if (localStorage.getItem(key)) {
+       localStorage.removeItem(key);}
+       localStorage.setItem(key, value);
+   }
+ 
+   seriesPageClick(seriesName:string){
+     dispatch(setSeries(seriesName))
+     dispatch(navigate(Screens.SERIES));
+     this.addToLocalStorage("SERIES", seriesName)
+   }
 
     connectedCallback(){
         this.render();

@@ -36,6 +36,7 @@ class MegaReview extends HTMLElement {
   seriesPageClick(seriesName:string){
     dispatch(setSeries(seriesName))
     dispatch(navigate(Screens.SERIES));
+    this.addToLocalStorage("SERIES", seriesName)
   }
 
   async render() {

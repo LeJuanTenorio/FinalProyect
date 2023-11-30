@@ -13,7 +13,7 @@ class CommentFeed extends HTMLElement {
 
     async getFirestoreReviews() {
         Firebase.getReviewsLoop(this.renderReviews);
-
+        console.log("HELLO MUNDITO");
     }
 
     renderReviews = (docs: Review[]) => {
@@ -22,18 +22,20 @@ class CommentFeed extends HTMLElement {
         if (container) {
             container.innerHTML = ''}
 
+        console.log("IM RENDDERING SOMEHTIN YES SIER")
+
         for (const data of docs) {
-
+            console.log("MY NAME IS JEFF");
             const resolvedData = data;
-
+            console.log("THIS IS DATA", resolvedData);
             const comment = document.createElement('my-comment');
             comment.setAttribute(CommentAttribute.name, resolvedData.user);
             comment.setAttribute(CommentAttribute.comment, resolvedData.comment);
             comment.setAttribute(CommentAttribute.serie, resolvedData.serie);
             comment.setAttribute(CommentAttribute.poster, resolvedData.poster);
-
+            console.log("THIS IS COMMENT", comment);
             container?.appendChild(comment);
-
+            console.log("THIS IS CONTAINER", container)
         }
     }
 

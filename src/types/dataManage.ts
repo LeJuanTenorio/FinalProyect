@@ -13,6 +13,7 @@ export interface Review {
     comment: string;
     serie: string;
     poster: string;
+    title: string;
 }
 
 export interface User {
