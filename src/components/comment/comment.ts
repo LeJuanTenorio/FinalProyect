@@ -2,7 +2,7 @@ import CommentStyle from "./comment.css"
 import { Review } from "../../types/dataManage";
 import Firebase, { getReview } from "../../utils/firebase"
 import { dispatch } from "../../store";
-import { navigate, setSeries } from "../../store/actions";
+import { navigate, setSeries, setSeriesID } from "../../store/actions";
 import { Screens } from "../../types/navigation";
 
 
@@ -11,7 +11,8 @@ export enum CommentAttribute{
     "comment" = "comment",
     "serie" = "serie",
     "poster" = "poster",
-    "title" = "title"
+    "title" = "title",
+    "idd" = "idd"
 }
 
 class Comment extends HTMLElement{
@@ -20,6 +21,7 @@ class Comment extends HTMLElement{
     comment:string="";
     serie:string="";
     poster:string="";
+    idd:string="";
 
     static get observedAttributes(){
         const attrs: Record <CommentAttribute,null> = {
@@ -28,6 +30,7 @@ class Comment extends HTMLElement{
             serie: null,
             poster: null,
             title: null,
+            idd: null,
         }
         return Object.keys(attrs);
     }
@@ -58,6 +61,7 @@ class Comment extends HTMLElement{
    }
  
    seriesPageClick(seriesName:string){
+    dispatch(setSeriesID(this.idd))
      dispatch(setSeries(seriesName))
      dispatch(navigate(Screens.SERIES));
      this.addToLocalStorage("SERIES", seriesName)

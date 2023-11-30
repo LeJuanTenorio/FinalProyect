@@ -20,6 +20,7 @@ const emptyState = {
   screen: Screens.LOGIN,
   user: {},
   series: {},
+  seriesID: {},
 };
 
 export let appState = emptyState;

@@ -5,7 +5,7 @@ import { appState, addObserver } from "../../store";
 
 const review = {
   comment: "",
-  title: "1"
+  serieID: {},
 };
 
 class SeriesInfo extends HTMLElement {
@@ -28,6 +28,13 @@ class SeriesInfo extends HTMLElement {
     const name = appState.series
     return name
   }
+  
+  async setSerieID(){
+    const id = appState.seriesID
+    review.serieID = id
+    console.log("IDEEDEDEDEDED IT TODL YOU R ER", id)
+    return id
+  }
 
   async getSerieInfo(){
     const serieName = await this.getSerieName()
@@ -39,7 +46,7 @@ class SeriesInfo extends HTMLElement {
   }
 
   submitReview(){
-    firebase.addReview(review.title, review.comment)
+    firebase.addReview(review.serieID, review.comment)
   }
 
   changeComment(reviewContent: any){
@@ -47,10 +54,13 @@ class SeriesInfo extends HTMLElement {
     console.log(review.comment)
   }
 
+  
+
   connectedCallback() {
     
     const fetchDataAndRender = async () => {
       await this.getSerieInfo();
+      await this.setSerieID();
       this.render();
     };
     console.log("EREREWRERWER", appState)

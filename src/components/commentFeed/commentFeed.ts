@@ -33,6 +33,7 @@ class CommentFeed extends HTMLElement {
             comment.setAttribute(CommentAttribute.comment, resolvedData.comment);
             comment.setAttribute(CommentAttribute.serie, resolvedData.serie);
             comment.setAttribute(CommentAttribute.poster, resolvedData.poster);
+            comment.setAttribute(CommentAttribute.idd, resolvedData.id);
             console.log("THIS IS COMMENT", comment);
             container?.appendChild(comment);
             console.log("THIS IS CONTAINER", container)
