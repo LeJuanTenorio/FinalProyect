@@ -1,7 +1,7 @@
 import "../../components/index"
 import styles from "./styles.css"
 
-class Dashboard extends HTMLElement{
+class Profile extends HTMLElement{
 
     constructor(){
         super();
@@ -21,11 +21,11 @@ class Dashboard extends HTMLElement{
     
             <section class="appContainer">
             <my-sidebar class="sidebar"></my-sidebar>
-            <main-dash></main-dash>
+            <profile-info></profile-info>
             </section>
             `
         }}
     }
 
-customElements.define("app-dashboard", Dashboard);
+customElements.define("app-profile", Profile);
 

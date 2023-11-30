@@ -10,4 +10,5 @@ export {default as MegaReview} from "./dashboardComponents/megaReview/megaReview
 export {default as User} from "./user/user"
 export {default as Poster} from "./seriesPoster/poster"
 export {default as Modal} from "./modal/modal"
+export {default as ProfileInfo} from "./mainProfile/mainProfile"
 export {default as SeriesInfo} from "./seriesInfo/seriesInfo"

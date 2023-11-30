@@ -1,6 +1,23 @@
-.mainDash{
+.container{
+    background-color: rgb(9,30,40);
+    width: 25vw;
+    height: 100vh;
+    padding: 20px;
     display: flex;
-    flex-direction: row;
-    width:95vw;
-    height:100%;
+    flex-direction: column;
 }
+
+.favorites-poster{
+    width: 60px;
+    height: auto;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.friend{
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border-radius: 150px;
+}
+

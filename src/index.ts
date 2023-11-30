@@ -1,4 +1,5 @@
 import "./components"
+import "./screens/profilePage/profilePage"
 import "./screens/dashboard/dashboard"
 import "./screens/login/login"
 import "./screens/series/series"
@@ -6,7 +7,6 @@ import "./screens/signUp/signUp"
 import { addObserver, appState } from "./store/index";
 import { Screens } from "./types/navigation";
 import styles from "./styles.css"
-
 
 
 class AppContainer extends HTMLElement {
@@ -53,6 +53,11 @@ class AppContainer extends HTMLElement {
             this.shadowRoot?.appendChild(LANDING);
             break;
     
+        case Screens.PROFILE:
+            const PROFILE = this.ownerDocument.createElement("app-profile");
+            this.shadowRoot?.appendChild(PROFILE);
+            break;
+
         default:
             break;
         }
