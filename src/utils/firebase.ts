@@ -155,13 +155,10 @@ const logIn = (email: string, password: string) => {
 }
 
 
-const addReview = async (serieTitle: any, post: Omit<Review, "id">) => {
+const addReview = async (serieUID: any, serieComment: any) => {
   try {
-    const seriesData = collection (db, "SeriesData", serieTitle);  
-    const reviews = collection(seriesData, "reviews");
-
-    await addDoc(reviews, post);
-    console.log("Added to subcollection");
+    const whereSerie = doc(db, "SeriesData", serieUID);
+    console.log("ADDED",whereSerie)
   } catch (error) {
     console.error(error);
   }

@@ -1,9 +1,12 @@
 import style from "./styles.css";
 import firebase from "../../utils/firebase";
 import { Series } from "../../types/dataManage";
-import { appState } from "../../store";
+import { appState, addObserver } from "../../store";
 
-
+const review = {
+  comment: "",
+  title: 1
+};
 
 class SeriesInfo extends HTMLElement {
 
@@ -35,18 +38,24 @@ class SeriesInfo extends HTMLElement {
     this.logo_title = seriesData[0].logo_title;
   }
 
-
   submitReview(){
+    firebase.addReview("1", "2")
   }
 
+  changeComment(reviewContent: any){
+    review.comment = reviewContent.target.value; 
+    console.log(review.comment)
+  }
 
   connectedCallback() {
+    
     const fetchDataAndRender = async () => {
       await this.getSerieInfo();
       this.render();
     };
     console.log("EREREWRERWER", appState)
     fetchDataAndRender();
+    addObserver(this);
   }
 
   addReview(){
@@ -116,12 +125,13 @@ class SeriesInfo extends HTMLElement {
         const reviewInput = this.ownerDocument.createElement('input')
         reviewInput.classList.add('reviewInput')
         reviewInput.placeholder = "¿Qué opinas de la serie?"
+        reviewInput.addEventListener("change", this.changeComment);
         const submitReview = this.ownerDocument.createElement('button')
         submitReview.type = "button"
         submitReview?.addEventListener("click", (event) => {
           event.preventDefault();
-          this.addReview();
-      });
+          this.submitReview();
+         });
 
         reviewForm.appendChild(reviewInput)
         reviewForm.appendChild(submitReview)
@@ -135,7 +145,6 @@ class SeriesInfo extends HTMLElement {
     }
 }
 }
-
 
 customElements.define("series-info", SeriesInfo)
 export default SeriesInfo;
