@@ -1,11 +1,11 @@
-import { Poster, Modal } from ".."; 
+import { Poster, Modal } from "../.."; 
 import style from "./megaReview.css";
-import { Series } from "../../types/dataManage";
-import Firebase from "../../utils/firebase"
-import { dispatch } from "../../store";
-import { navigate, setSeries, setSeriesID } from "../../store/actions";
-import { Screens } from "../../types/navigation";
-import { AppState } from "../../types/store";
+import { Series } from "../../../types/dataManage";
+import Firebase from "../../../utils/firebase"
+import { dispatch } from "../../../store";
+import { navigate, setSeries, setSeriesID } from "../../../store/actions";
+import { Screens } from "../../../types/navigation";
+import { AppState } from "../../../types/store";
 
 const seriesData: Series = {
   id:"",

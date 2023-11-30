@@ -1,5 +1,5 @@
-import { User } from "..";
-import { userData } from "../data/userData";
+import { User } from "../..";
+import { userData } from "../../data/userData";
 import style from "./headerWelcome.css"
 
 class HeaderWelcome extends HTMLElement{

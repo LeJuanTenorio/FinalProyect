@@ -7,7 +7,8 @@ const review = {
   comment: "",
   serieID: {},
   userPic: {},
-  poster: {}
+  poster: {},
+  userName: {}
 };
 
 class SeriesInfo extends HTMLElement {
@@ -70,11 +71,18 @@ class SeriesInfo extends HTMLElement {
     this.synopsis = seriesData[0].synopsis;
   }
 
+  async getUserName(){
+    const username = await firebase.getUsernameById(appState.user)
+    review.userName = username
+    console.log("USERRR NAMEMMEEMEM", username)
+    return username
+  }
+
   submitReview(){
     firebase.addReview(
       review.serieID,
       review.comment,
-      appState.user,
+      review.userName,
       review.userPic, 
       review.poster)
     console.log("POSETERRRRRR" + review.poster)
@@ -93,6 +101,7 @@ class SeriesInfo extends HTMLElement {
       await this.getSerieInfo();
       await this.setSerieID();
       await this.setUserPic();
+      await this.getUserName();
       this.render();
     };
     console.log("EREREWRERWER", appState)

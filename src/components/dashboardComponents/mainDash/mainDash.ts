@@ -1,4 +1,4 @@
-import { SidebarRight, Feed } from "..";
+import { SidebarRight, Feed } from "../..";
 import styles from "./mainDash.css"
 
 class DashMain extends HTMLElement{

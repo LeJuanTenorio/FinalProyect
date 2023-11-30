@@ -67,15 +67,6 @@ class SidebarRight extends HTMLElement {
       }
       const people = await Firebase.getUsers();
 
-
-      // series.forEach((series:Series)=>{
-      //   const posterElement = document.createElement('img');
-      //   posterElement.src = series.poster;
-      //   favoriteContainer?.appendChild(posterElement);
-      //   posterElement.setAttribute('class', 'favorites-poster');
-      //   //console.log(series);
-      // })
-
       people.forEach((user:User)=>{
         const friendElement = document.createElement('img');
         friendElement.src = user.pic;

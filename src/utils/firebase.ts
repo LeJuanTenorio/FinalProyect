@@ -278,6 +278,19 @@ const getUserPic = async (userID:any) => {
   } catch {}
 }
 
+const getUsernameById = async (userID:any) => {
+  try{
+    const gettingDoc = await getDocById("users",userID)
+    let favoritesArray = []
+    favoritesArray = gettingDoc?.data()?.name
+    console.log("name" + favoritesArray)
+    return favoritesArray;
+  }
+  catch{
+
+  }
+}
+
 
 export default {
   getSeries,
@@ -296,5 +309,5 @@ export default {
   getUserUID,
   addFavorite,
   getUserPic,
-  
+  getUsernameById
 }
