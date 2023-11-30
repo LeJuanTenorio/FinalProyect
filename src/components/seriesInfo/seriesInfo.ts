@@ -43,6 +43,7 @@ class SeriesInfo extends HTMLElement {
     this.background = seriesData[0].background
     this.poster = seriesData[0].poster;
     this.logo_title = seriesData[0].logo_title;
+    this.synopsis = seriesData[0].synopsis;
   }
 
   submitReview(){
@@ -119,6 +120,7 @@ class SeriesInfo extends HTMLElement {
 
         const heartImg = this.ownerDocument.createElement('img');
         heartImg.classList.add('heart');
+        heartImg.src = "https://www.iconpacks.net/icons/2/free-heart-icon-3510-thumb.png"
         descAndHeartDiv.appendChild(heartImg);
 
         midInfoDiv.appendChild(descAndHeartDiv);
