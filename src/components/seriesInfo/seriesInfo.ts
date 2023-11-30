@@ -7,6 +7,7 @@ const review = {
   comment: "",
   serieID: {},
   userPic: {},
+  poster: {}
 };
 
 class SeriesInfo extends HTMLElement {
@@ -64,12 +65,19 @@ class SeriesInfo extends HTMLElement {
     const seriesData = await firebase.getSerie(serieName);
     this.background = seriesData[0].background
     this.poster = seriesData[0].poster;
+    review.poster = this.poster;
     this.logo_title = seriesData[0].logo_title;
     this.synopsis = seriesData[0].synopsis;
   }
 
   submitReview(){
-    firebase.addReview(review.serieID, review.comment, appState.user, "1")
+    firebase.addReview(
+      review.serieID,
+      review.comment,
+      appState.user,
+      review.userPic, 
+      review.poster)
+    console.log("POSETERRRRRR" + review.poster)
   }
 
   changeComment(reviewContent: any){

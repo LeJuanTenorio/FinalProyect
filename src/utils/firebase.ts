@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, orderBy, query, getDoc, setDoc, addDoc, getDocs, onSnapshot, updateDoc, arrayUnion} from "firebase/firestore";
+import { getFirestore, collection, doc, orderBy, query, getDoc, setDoc, serverTimestamp, addDoc, getDocs, onSnapshot, updateDoc, arrayUnion} from "firebase/firestore";
 import { Series, User, Review} from "../types/dataManage";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth";
 import storage from "./storage";
@@ -59,7 +59,11 @@ export const getUsers = async () => {
 };
 
 const getReviewsLoop = (cb: (docs: Review[]) => void) => {
-  const queryReviews = query(collection(db, "reviews")); 
+  const queryReviews = query(
+    collection(db, "reviews"),
+    orderBy("timestamp", "desc") // Replace "timestamp" with the field you want to order by
+  );
+
   onSnapshot(queryReviews, (collection) => {
     const docs: Review[] = collection.docs.map((doc) => ({
       id: doc.id,
@@ -158,7 +162,8 @@ const logIn = (email: string, password: string) => {
 const addReview = async (serieUID: any, 
   serieComment: any, 
   userName: any, 
-  userPic:any) => {
+  userPic:any,
+  posterPic:any) => {
   try {
     const whereSerie = doc(db, "SeriesData", serieUID);
     const whereAdd = collection(db,"reviews")
@@ -166,12 +171,15 @@ const addReview = async (serieUID: any,
     const serie = await getDoc(whereSerie);
     const serieData = serie.data();
     const serieTitle = serieData?.title;
+    const timestamp = serverTimestamp()
 
     const data = {
       title: serieTitle,
       comment: serieComment,
       name: userName,
       userPic: userPic,
+      poster: posterPic,
+      timestamp: timestamp
     }
 
     await addDoc(whereAdd,data)
@@ -287,5 +295,6 @@ export default {
   signUserOut,
   getUserUID,
   addFavorite,
-  getUserPic
+  getUserPic,
+  
 }
