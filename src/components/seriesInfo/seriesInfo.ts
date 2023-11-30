@@ -5,7 +5,7 @@ import { appState, addObserver } from "../../store";
 
 const review = {
   comment: "",
-  title: 1
+  title: "1"
 };
 
 class SeriesInfo extends HTMLElement {
@@ -39,7 +39,7 @@ class SeriesInfo extends HTMLElement {
   }
 
   submitReview(){
-    firebase.addReview("1", "2")
+    firebase.addReview(review.title, review.comment)
   }
 
   changeComment(reviewContent: any){
