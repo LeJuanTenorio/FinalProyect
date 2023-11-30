@@ -158,7 +158,19 @@ const logIn = (email: string, password: string) => {
 const addReview = async (serieUID: any, serieComment: any) => {
   try {
     const whereSerie = doc(db, "SeriesData", serieUID);
-    console.log("ADDED",whereSerie)
+    const whereAdd = collection(db,"reviews")
+    
+    const serie = await getDoc(whereSerie);
+    const serieData = serie.data();
+    const serieTitle = serieData?.title;
+
+    const data = {
+      title: serieTitle,
+      comment: serieComment
+    }
+
+    await addDoc(whereAdd,data)
+    console.log("ADDED",data)
   } catch (error) {
     console.error(error);
   }
