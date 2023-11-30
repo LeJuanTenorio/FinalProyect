@@ -4,6 +4,7 @@ import { Series, User } from "../../types/dataManage";
 import Firebase from "../../utils/firebase"
 import storage  from "../../utils/storage";
 import { appState } from "../../store";
+import { posterAttribute } from "../poster/poster";
 
 class ProfileInfo extends HTMLElement {
 
@@ -18,7 +19,27 @@ class ProfileInfo extends HTMLElement {
 
   connectedCallback() {
     this.render();
+    this.renderFavorites();
   }
+
+  renderFavorites = async () => {
+    const container = this.shadowRoot?.querySelector('.favoriteContainer');
+    
+    const userFound = appState.user;
+    const favoritesArray = await Firebase.getFavoritesId(userFound);
+
+    for (const data of favoritesArray) {
+        const serieMatch = await Firebase.getDocById("SeriesData", data);
+        const serieData = serieMatch?.data()
+        const resolvedData = serieData;
+        const poster = document.createElement('my-poster');
+        poster.setAttribute(posterAttribute.serie, resolvedData?.title);
+        poster.setAttribute(posterAttribute.poster, resolvedData?.poster);
+        poster.setAttribute(posterAttribute.idd, resolvedData?.id);
+
+        container?.appendChild(poster);
+    }
+}
 
  async render() {
     if (this.shadowRoot) {
@@ -39,29 +60,11 @@ class ProfileInfo extends HTMLElement {
         </style>
       `;
 
-      const favoriteContainer = this.shadowRoot.querySelector(".favoriteContainer");
       const friendContainer = this.shadowRoot.querySelector(".friendContainer");
 
       console.log("ProfileInfo");
 
-      const series = async () => {
-        try {
-          const userFound = await appState.user;
-          const favoritesArray = await Firebase.getFavoritesId(userFound); 
-          console.log("favoritos", favoritesArray);
-          for (const serie of favoritesArray) {
-            const serieMatch = await Firebase.getDocById("SeriesData", serie);
-            const serieData = serieMatch?.data()
-            console.log("serieMATCH", serieData);
-            const poster = this.ownerDocument.createElement('img')
-            poster.className = "favorites-poster"
-            poster.src = serieData?.poster
-            favoriteContainer?.appendChild(poster)
-          }
-        } catch (error) {
-          console.error("Error in series:", error);
-        }
-      }
+      
       const people = await Firebase.getUsers();
 
       people.forEach((user:User)=>{
@@ -70,8 +73,6 @@ class ProfileInfo extends HTMLElement {
         friendContainer?.appendChild(friendElement);
         friendElement.setAttribute('class','friend');
       })
-
-      series();
 
     }
   }
