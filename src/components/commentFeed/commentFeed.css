@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    padding-top: 70vh;
+    padding-top: 40vh;
 }
 
 .container::-webkit-scrollbar{

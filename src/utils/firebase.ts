@@ -155,7 +155,10 @@ const logIn = (email: string, password: string) => {
 }
 
 
-const addReview = async (serieUID: any, serieComment: any) => {
+const addReview = async (serieUID: any, 
+  serieComment: any, 
+  userName: any, 
+  userPic:any) => {
   try {
     const whereSerie = doc(db, "SeriesData", serieUID);
     const whereAdd = collection(db,"reviews")
@@ -166,7 +169,9 @@ const addReview = async (serieUID: any, serieComment: any) => {
 
     const data = {
       title: serieTitle,
-      comment: serieComment
+      comment: serieComment,
+      name: userName,
+      userPic: userPic,
     }
 
     await addDoc(whereAdd,data)
@@ -255,7 +260,15 @@ export const signUserOut = async () => {
   }
 };
 
-
+const getUserPic = async (userID:any) => {
+  try {
+    const gettingDoc = await getDocById("users",userID)
+    let pic = {}
+    pic = gettingDoc?.data()?.pic
+    console.log("Pic url" + pic)
+    return pic;
+  } catch {}
+}
 
 
 export default {
@@ -273,5 +286,6 @@ export default {
   getDocById,
   signUserOut,
   getUserUID,
-  addFavorite
+  addFavorite,
+  getUserPic
 }

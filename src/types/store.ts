@@ -4,12 +4,14 @@ export type AppState = {
     screen: string
     series: string
     seriesID: string
+    viewingProfile: string
 }
 
 export enum ScreenActions {
     "NAVIGATE" = "NAVIGATE",
     "SETSERIES" = "SETSERIES",
-    "SETSERIEID" = "SETSERIEID"
+    "SETSERIEID" = "SETSERIEID",
+    "SETVIEWPROFILE" = "SETVIEWPROFILE"
 }
 
 export type Actions = ScreenActions;

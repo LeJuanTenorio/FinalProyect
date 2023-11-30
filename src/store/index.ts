@@ -21,6 +21,7 @@ const emptyState = {
   user: {},
   series: {},
   seriesID: {},
+  viewingProfile:{}
 };
 
 export let appState = emptyState;

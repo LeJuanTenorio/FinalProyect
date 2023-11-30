@@ -15,6 +15,10 @@ export const reducer = (action: any, prevState: any) => {
       case "SETSERIESID":
       prevState.seriesID = action.payload;
       break;
+
+      case "SETVIEWPROFILE":
+      prevState.viewingProfile = action.payload;
+      break;
   }
 
   return prevState;

@@ -6,6 +6,7 @@ import { appState, addObserver } from "../../store";
 const review = {
   comment: "",
   serieID: {},
+  userPic: {},
 };
 
 class SeriesInfo extends HTMLElement {
@@ -29,6 +30,23 @@ class SeriesInfo extends HTMLElement {
     return name
   }
   
+  async getUserPic(){
+    try{
+    const pic = await firebase.getUserPic(appState.user)
+    console.log("ESTE SSSSSSSSSSSSS", pic)
+    return pic
+     } 
+     catch{}
+  }
+
+  async setUserPic(){
+    const pic = await this.getUserPic()
+    if(pic){
+      review.userPic = pic
+    }
+    console.log("PICCC", pic)
+  }
+
   async setSerieID(){
     const id = appState.seriesID
     review.serieID = id
@@ -51,7 +69,7 @@ class SeriesInfo extends HTMLElement {
   }
 
   submitReview(){
-    firebase.addReview(review.serieID, review.comment)
+    firebase.addReview(review.serieID, review.comment, appState.user, "1")
   }
 
   changeComment(reviewContent: any){
@@ -66,6 +84,7 @@ class SeriesInfo extends HTMLElement {
     const fetchDataAndRender = async () => {
       await this.getSerieInfo();
       await this.setSerieID();
+      await this.setUserPic();
       this.render();
     };
     console.log("EREREWRERWER", appState)
