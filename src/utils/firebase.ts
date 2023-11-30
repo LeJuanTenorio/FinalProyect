@@ -163,7 +163,8 @@ const addReview = async (serieUID: any,
   serieComment: any, 
   userName: any, 
   userPic:any,
-  posterPic:any) => {
+  posterPic:any,
+  userID:any) => {
   try {
     const whereSerie = doc(db, "SeriesData", serieUID);
     const whereAdd = collection(db,"reviews")
@@ -179,6 +180,7 @@ const addReview = async (serieUID: any,
       name: userName,
       userPic: userPic,
       poster: posterPic,
+      userID: userID,
       timestamp: timestamp
     }
 
