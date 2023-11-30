@@ -36,6 +36,10 @@ class SeriesInfo extends HTMLElement {
     return id
   }
 
+  async addToFavorites(){
+    firebase.addFavorite(appState.user,review.serieID)
+  }
+
   async getSerieInfo(){
     const serieName = await this.getSerieName()
     firebase.getSerie(serieName);
@@ -121,6 +125,10 @@ class SeriesInfo extends HTMLElement {
         const heartImg = this.ownerDocument.createElement('img');
         heartImg.classList.add('heart');
         heartImg.src = "https://www.iconpacks.net/icons/2/free-heart-icon-3510-thumb.png"
+        heartImg.addEventListener("click", () => {
+          console.log("clic")
+          this.addToFavorites()
+         });
         descAndHeartDiv.appendChild(heartImg);
 
         midInfoDiv.appendChild(descAndHeartDiv);

@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, orderBy, query, getDoc, setDoc, addDoc, getDocs, onSnapshot} from "firebase/firestore";
+import { getFirestore, collection, doc, orderBy, query, getDoc, setDoc, addDoc, getDocs, onSnapshot, updateDoc, arrayUnion} from "firebase/firestore";
 import { Series, User, Review} from "../types/dataManage";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth";
 import storage from "./storage";
@@ -223,6 +223,19 @@ const getUserUID = () => {
   });
 };
 
+const addFavorite = async (userID: any, seriesID: any) => {
+  try {
+    const userSnapshot = await getDocById("users", userID);
+
+    if (userSnapshot) {
+      const userRef = userSnapshot.ref; 
+      updateDoc(userRef, {favorites: arrayUnion(seriesID)});
+    }
+  } catch (error) {
+    console.error("Error adding favorite:", error);
+  }
+};
+
 const favoriteSeriesID = async () => {
   try {
     const userFound = await storage.getUserFromStorage();
@@ -260,4 +273,5 @@ export default {
   getDocById,
   signUserOut,
   getUserUID,
+  addFavorite
 }

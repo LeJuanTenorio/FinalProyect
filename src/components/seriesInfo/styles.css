@@ -19,7 +19,7 @@
     height: 85vh;
     background-color: rgba(59, 87, 105, 0.97);
     left: 10vw;
-    bottom: -10vh;
+    bottom: -15vh;
     border-top-left-radius: 10px;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .poster{
-    width: 20vw;
+    width: 13vw;
     height: auto;
 }
 
