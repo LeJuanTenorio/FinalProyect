@@ -32,6 +32,7 @@ class SeriesInfo extends HTMLElement {
     const seriesData = await firebase.getSerie(serieName);
     this.background = seriesData[0].background
     this.poster = seriesData[0].poster;
+    this.logo_title = seriesData[0].logo_title;
   }
 
 
@@ -48,6 +49,9 @@ class SeriesInfo extends HTMLElement {
     fetchDataAndRender();
   }
 
+  addReview(){
+    console.log("review")
+  }
  
   async render() {
     if (this.shadowRoot) {
@@ -68,7 +72,7 @@ class SeriesInfo extends HTMLElement {
 
         const titleImg = this.ownerDocument.createElement('img');
         titleImg.classList.add('title');
-        titleImg.src = this.title
+        titleImg.src = this.logo_title
         upperInfoDiv.appendChild(titleImg);
 
         const seasonsDiv = this.ownerDocument.createElement('p');
@@ -78,13 +82,13 @@ class SeriesInfo extends HTMLElement {
 
         container.appendChild(upperInfoDiv);
 
-        const lowerInfoDiv = this.ownerDocument.createElement('div');
-        lowerInfoDiv.classList.add('lowerInfo');
+        const midInfoDiv = this.ownerDocument.createElement('div');
+        midInfoDiv.classList.add('midInfo');
 
         const posterImg = this.ownerDocument.createElement('img');
         posterImg.classList.add('poster');
         posterImg.src = this.poster;
-        lowerInfoDiv.appendChild(posterImg);
+        midInfoDiv.appendChild(posterImg);
 
         const descAndHeartDiv = this.ownerDocument.createElement('div');
         descAndHeartDiv.classList.add('descAndHeart');
@@ -98,14 +102,33 @@ class SeriesInfo extends HTMLElement {
         heartImg.classList.add('heart');
         descAndHeartDiv.appendChild(heartImg);
 
-        lowerInfoDiv.appendChild(descAndHeartDiv);
+        midInfoDiv.appendChild(descAndHeartDiv);
 
         const creditsDiv = this.ownerDocument.createElement('p');
         creditsDiv.classList.add('credits');
         creditsDiv.innerText = this.credits
-        lowerInfoDiv.appendChild(creditsDiv);
+        midInfoDiv.appendChild(creditsDiv);
 
-        container.appendChild(lowerInfoDiv);
+        const reviewContainer = this.ownerDocument.createElement('section')
+        reviewContainer.classList.add('reviewContainer')
+        const reviewForm = this.ownerDocument.createElement('form')
+        reviewForm.classList.add('reviewForm')
+        const reviewInput = this.ownerDocument.createElement('input')
+        reviewInput.classList.add('reviewInput')
+        reviewInput.placeholder = "¿Qué opinas de la serie?"
+        const submitReview = this.ownerDocument.createElement('button')
+        submitReview.type = "button"
+        submitReview?.addEventListener("click", (event) => {
+          event.preventDefault();
+          this.addReview();
+      });
+
+        reviewForm.appendChild(reviewInput)
+        reviewForm.appendChild(submitReview)
+        reviewContainer.appendChild(reviewForm)
+        midInfoDiv.appendChild(reviewContainer)
+
+        container.appendChild(midInfoDiv);
 
         this.shadowRoot.appendChild(container);
 

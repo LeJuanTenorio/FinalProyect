@@ -59,7 +59,6 @@ class MegaReview extends HTMLElement {
         posterElement.title = series.title;
         posterElement.addEventListener("click", () => {
           this.seriesPageClick(series.title);
-          this.addToLocalStorage("SERIE", series.title);
       });
         favoriteContainer?.appendChild(posterElement);
         posterElement.setAttribute('class', 'favorites-poster');

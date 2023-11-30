@@ -19,8 +19,6 @@ export const auth = getAuth(app);
 export const user = auth.currentUser;
 
 
-
-
 export const getSeries = async () => {
   const querySnapshot = await getDocs(collection(db, "SeriesData"));
   const gotArray: Array<Series> = [];
