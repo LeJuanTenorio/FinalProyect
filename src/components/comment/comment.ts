@@ -11,6 +11,7 @@ export enum CommentAttribute{
     "comment" = "comment",
     "serie" = "serie",
     "poster" = "poster",
+    "title" = "title"
 }
 
 class Comment extends HTMLElement{
@@ -26,6 +27,7 @@ class Comment extends HTMLElement{
             comment: null,
             serie: null,
             poster: null,
+            title: null,
         }
         return Object.keys(attrs);
     }
@@ -79,6 +81,9 @@ class Comment extends HTMLElement{
             const posterImage = this.ownerDocument.createElement('img');
             posterImage.classList.add('poster');
             posterImage.src = `${this.poster}`;
+            posterImage.addEventListener("click", () => {
+                this.seriesPageClick(this.serie);
+            });
             commentsContainer.appendChild(posterImage);
 
             const commentParagraph = this.ownerDocument.createElement('p');
