@@ -9,7 +9,7 @@ export interface Series {
 
 export interface Review {
     id: string;
-    user: string;
+    name: string;
     comment: string;
     serie: string;
     poster: string;

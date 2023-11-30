@@ -26,9 +26,9 @@ class CommentFeed extends HTMLElement {
             const resolvedData = data;
 
             const comment = document.createElement('my-comment');
-            comment.setAttribute(CommentAttribute.name, resolvedData.user);
+            comment.setAttribute(CommentAttribute.name, resolvedData.name);
             comment.setAttribute(CommentAttribute.comment, resolvedData.comment);
-            comment.setAttribute(CommentAttribute.serie, resolvedData.serie);
+            comment.setAttribute(CommentAttribute.serie, resolvedData.title);
             comment.setAttribute(CommentAttribute.poster, resolvedData.poster);
             comment.setAttribute(CommentAttribute.idd, resolvedData.id);
 
