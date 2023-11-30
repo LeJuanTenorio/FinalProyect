@@ -4,6 +4,8 @@ import "./screens/dashboard/dashboard"
 import "./screens/login/login"
 import "./screens/series/series"
 import "./screens/signUp/signUp"
+import "./screens/configPage/configPage"
+
 import { addObserver, appState } from "./store/index";
 import { Screens } from "./types/navigation";
 import styles from "./styles.css"
@@ -56,6 +58,11 @@ class AppContainer extends HTMLElement {
         case Screens.PROFILE:
             const PROFILE = this.ownerDocument.createElement("app-profile");
             this.shadowRoot?.appendChild(PROFILE);
+            break;
+
+        case Screens.CONFIG:
+            const CONFIG = this.ownerDocument.createElement("app-config");
+            this.shadowRoot?.appendChild(CONFIG);
             break;
 
         default:

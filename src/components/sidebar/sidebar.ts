@@ -24,6 +24,11 @@ class Sidebar extends HTMLElement {
         console.log("profile")
       }
     
+    configPageClick(){
+        dispatch(navigate(Screens.CONFIG))
+        console.log("config")
+    }
+
     signOutClick(){
         dispatch(signUserOut())
     }
@@ -37,10 +42,11 @@ class Sidebar extends HTMLElement {
                 
             <div class="sidebar">
                 <ul>
-                <li><a class="home"><img src="https://cdn-icons-png.flaticon.com/128/1946/1946436.png"></a></li>
-                <li><a class="signOut"><img src="https://cdn-icons-png.flaticon.com/128/149/149852.png?ga=GA1.1.432586728.1695342026&track=ais"></a></li>
-                <li><a href="#"><img src="https://cdn-icons-png.flaticon.com/128/3602/3602123.png?ga=GA1.1.432586728.1695342026&track=ais"></a></li>
+                <li><a class="home"><img src="https://cdn-icons-png.flaticon.com/128/1946/1946436.png"></a></li>                
+                <li><a class="config"><img src="https://cdn-icons-png.flaticon.com/512/15/15185.png"></a></li>
                 <li><a class="profile"><img src="https://cdn-icons-png.flaticon.com/128/1077/1077114.png?ga=GA1.1.432586728.1695342026&track=ais"></a></li>
+                <li><a class="signOut"><img src="https://cdn-icons-png.flaticon.com/128/149/149852.png?ga=GA1.1.432586728.1695342026&track=ais"></a></li>
+
                 </ul>
             </div>
                 `
@@ -56,7 +62,8 @@ class Sidebar extends HTMLElement {
                 const signOut = this.shadowRoot.querySelector(".signOut")
                 signOut?.addEventListener("click", () => this.signOutClick())
 
-
+                const config = this.shadowRoot.querySelector(".config")
+                config?.addEventListener("click", () => this.configPageClick())
             }
         }
     }
