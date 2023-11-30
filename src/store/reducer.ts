@@ -11,6 +11,10 @@ export const reducer = (action: any, prevState: any) => {
       case "SETSERIES":
       prevState.series = action.payload;
       break;
+
+      case "SETSERIESID":
+      prevState.seriesID = action.payload;
+      break;
   }
 
   return prevState;

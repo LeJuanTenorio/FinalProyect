@@ -7,7 +7,8 @@ export type AppState = {
 
 export enum ScreenActions {
     "NAVIGATE" = "NAVIGATE",
-    "SETSERIES" = "SETSERIES"
+    "SETSERIES" = "SETSERIES",
+    "SETSERIEID" = "SETSERIEID"
 }
 
 export type Actions = ScreenActions;

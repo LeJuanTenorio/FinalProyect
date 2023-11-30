@@ -20,3 +20,10 @@ export const setSeries = (series:string) => {
     payload: series,
   }
 }
+
+export const setSeriesID = (serieID:string) => {
+  return{
+    type: "SETSERIESID",
+    payload: serieID,
+  }
+}
