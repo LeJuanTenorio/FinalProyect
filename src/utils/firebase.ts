@@ -333,6 +333,21 @@ const updatePasswordNow = async (user: any, newPassword: string) => {
   }
 }
 
+const addPicToUser = async (userID: any, picUrl: string) => {
+  try {
+    const userSnapshot = await getDocById("users", userID);
+
+    if (userSnapshot) {
+      const userRef = userSnapshot.ref
+      updateDoc(userRef, {
+        pic: picUrl,
+      });
+    }
+  } catch (error) {
+    console.error("Error adding pic to user:", error)
+  }
+}
+
 export default {
   getSeries,
   getSerie, 
@@ -355,4 +370,5 @@ export default {
   getNameProfilePicture,
   uploadFile,
   updatePasswordNow,
+  addPicToUser,
 }

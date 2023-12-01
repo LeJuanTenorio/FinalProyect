@@ -22,5 +22,7 @@ export interface User {
     name: string;
     pic: string;
     favorites: Array<string>;
+    email:string;
+    password:string;
 }
 

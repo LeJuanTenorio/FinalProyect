@@ -7,6 +7,7 @@ import { appState } from "../../store";
 import { posterAttribute } from "../poster/poster";
 import firebase from "../../utils/firebase";
 import { user } from "../../utils/firebase";
+import { getUserInfoNow } from "../../store";
 
 const formPost = {
     name:"",
@@ -34,8 +35,8 @@ connectedCallback() {
 changePassword(e:any){
     formPost.password = e.target.value;
     console.log(e.target.value)
-    console.log(appState.user)
-    //firebase.updatePasswordNow(user,e.target.value)
+    console.log("gotUser", getUserInfoNow())
+    firebase.updatePasswordNow(getUserInfoNow(),e.target.value)
 }
 
 changeUsername(e:any){
@@ -46,6 +47,7 @@ changeUsername(e:any){
 changeImage(e:any){
     formPost.Image = e.target.value;
     console.log("IMAGE" + e.target.value)
+    firebase.addPicToUser(getUserInfoNow(),e.target.value)
 }
 
 upload(e:any){
