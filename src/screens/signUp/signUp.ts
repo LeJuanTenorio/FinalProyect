@@ -67,20 +67,15 @@ class SignUp extends HTMLElement {
             styleTag.textContent = styles;
             container.appendChild(styleTag);
     
-            /*const backgroundImg = this.ownerDocument.createElement('img');
+            const backgroundImg = this.ownerDocument.createElement('img');
             backgroundImg.classList.add('background');
             backgroundImg.src = 'https://www.themoviedb.org/t/p/original/wX3twEPd6RCkQly9JVEkw4a6Qbi.jpg';
-            container.appendChild(backgroundImg);*/
+            container.appendChild(backgroundImg);
     
             const section = this.ownerDocument.createElement('section');
     
             const logoDiv = this.ownerDocument.createElement('div');
             logoDiv.classList.add('logo');
-    
-            /*const logoImg = this.ownerDocument.createElement('img');
-            logoImg.classList.add('sphere');
-            logoImg.src = 'https://raw.githubusercontent.com/Manuelard03/GHIFLIX/main/3.%20REGISTRO/img/1-LOGO.png';
-            logoDiv.appendChild(logoImg);*/
     
             section.appendChild(logoDiv);
     
@@ -154,9 +149,9 @@ class SignUp extends HTMLElement {
             switchInput.required = true;
             botonTerminosDiv.appendChild(switchInput);
     
-            const labelSwitch = this.ownerDocument.createElement('label');
+            /*const labelSwitch = this.ownerDocument.createElement('label');
             labelSwitch.classList.add('lbl-switch');
-            botonTerminosDiv.appendChild(labelSwitch);
+            botonTerminosDiv.appendChild(labelSwitch);*/
     
             terminosDiv.appendChild(botonTerminosDiv);
     
