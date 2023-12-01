@@ -1,0 +1,45 @@
+.form {
+    background-color: #162831;
+    width: 40%;
+    height: 60%;
+    margin-left: 50%;
+    margin-bottom: 60px;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.name {
+    color: #162831;
+    border: none;
+    margin: 20px;
+    border-radius: 20px;
+    background-color: #ffffff;
+}
+
+.img {
+    color: #162831;
+    border: none;
+    margin: 20px;
+    border-radius: 20px;
+    background-color: #ffffff;
+}
+
+.password {
+    color: #162831;
+    border: none;
+    margin: 20px;
+    border-radius: 20px;
+    background-color: #ffffff;
+}
+
+.text {
+    color: white;
+}
+
+.changeUr {
+    margin-left: 50%;
+}
+
+.button {
+    color: #203f4e;
+}
