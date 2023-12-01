@@ -97,9 +97,6 @@ class Comment extends HTMLElement{
             commentParagraph.innerText = `${this.comment}`
             commentsContainer.appendChild(commentParagraph);
 
-            const horizontalLine = this.ownerDocument.createElement('hr');
-            commentsContainer.appendChild(horizontalLine);
-
             this.shadowRoot?.appendChild(commentsContainer);
         }}
 }
