@@ -1,7 +1,7 @@
+import styles from "./styles.css";
 import { dispatch } from "../../store/index"
 import { navigate } from "../../store/actions"
 import { Screens } from "../../types/navigation"
-import styles from "./styles.css";
 import firebase from "../../utils/firebase";
 
 const formPost = {
@@ -52,23 +52,35 @@ class SignUp extends HTMLElement {
     }
 
     render() {
+
         if (this.shadowRoot) {
+            this.shadowRoot.innerHTML = `
+        <style>
+        ${styles}
+        </style>
+      `
+            
             const container = this.ownerDocument.createElement('div');
+            container.classList.add('container');
+
+            const styleTag = this.ownerDocument.createElement('style');
+            styleTag.textContent = styles;
+            container.appendChild(styleTag);
     
-            const backgroundImg = this.ownerDocument.createElement('img');
+            /*const backgroundImg = this.ownerDocument.createElement('img');
             backgroundImg.classList.add('background');
             backgroundImg.src = 'https://www.themoviedb.org/t/p/original/wX3twEPd6RCkQly9JVEkw4a6Qbi.jpg';
-            container.appendChild(backgroundImg);
+            container.appendChild(backgroundImg);*/
     
             const section = this.ownerDocument.createElement('section');
     
             const logoDiv = this.ownerDocument.createElement('div');
             logoDiv.classList.add('logo');
     
-            const logoImg = this.ownerDocument.createElement('img');
+            /*const logoImg = this.ownerDocument.createElement('img');
             logoImg.classList.add('sphere');
             logoImg.src = 'https://raw.githubusercontent.com/Manuelard03/GHIFLIX/main/3.%20REGISTRO/img/1-LOGO.png';
-            logoDiv.appendChild(logoImg);
+            logoDiv.appendChild(logoImg);*/
     
             section.appendChild(logoDiv);
     
