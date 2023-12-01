@@ -39,6 +39,12 @@ class Login extends HTMLElement {
     render() {
         if (this.shadowRoot) {
             const container = this.ownerDocument.createElement('div');
+            container.classList.add('container');
+
+            const backgroundImg = this.ownerDocument.createElement('img');
+            backgroundImg.classList.add('background');
+            backgroundImg.src = 'https://www.themoviedb.org/t/p/original/cCVyNQkFZxLAC5jKXgO7EsJlDNd.jpg';
+            container.appendChild(backgroundImg);
     
             const styleTag = this.ownerDocument.createElement('style');
             styleTag.textContent = styles;
