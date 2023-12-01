@@ -25,5 +25,11 @@ export const setSeriesID = (serieID:string) => {
   return{
     type: "SETSERIESID",
     payload: serieID,
-  }
+  }}
+
+  export const setViewProfile = (viewingProfile:any) => {
+    return{
+      type: "SETVIEWPROFILE",
+      payload: viewingProfile,
+    }
 }

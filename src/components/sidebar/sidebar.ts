@@ -1,9 +1,12 @@
 import SidebarStyle from "./sidebar.css"
-import { dispatch } from "../../store";
-import { navigate, setUserCredentials } from "../../store/actions";
+import { appState, dispatch } from "../../store";
+import { navigate, setViewProfile } from "../../store/actions";
 import { Screens } from "../../types/navigation";
 import { signUserOut } from "../../utils/firebase";
 
+const appStatus = {
+    user:{},
+}
 
 class Sidebar extends HTMLElement {
     constructor(){
@@ -20,6 +23,7 @@ class Sidebar extends HTMLElement {
       }
 
     profilePageClick(){
+        dispatch(setViewProfile(appState.user))
         dispatch(navigate(Screens.PROFILE))
         console.log("profile")
       }
