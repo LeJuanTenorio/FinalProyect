@@ -72,13 +72,18 @@ class Comment extends HTMLElement{
    }
 
     connectedCallback(){
-        this.render();
+        const fetchAndRender = async () => {
+            await this.getPic()
+            this.render();
+        }
+        fetchAndRender()
     }
 
     async getPic(){
         try{
             const picName = await firebase.getNameProfilePicture(`${this.uid}`)
             console.log("picName",picName)
+            this.idd = picName
         }
         catch{
         }
