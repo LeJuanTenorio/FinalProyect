@@ -48,7 +48,6 @@
     width: 20vw;
     height: auto;
     margin-left: 70px;
-    position: absolute;
     float: left;
     margin-bottom: 50%;
 }
@@ -67,7 +66,6 @@
 }
 
 .reviewContainer {
-    background-color: #7AA0BC;
     border-radius: 50%;
     border: none;
 }
@@ -86,6 +84,3 @@
     color: #06171F;
 }
 
-.reviewInput {
-    color: #7AA0BC;
-}
