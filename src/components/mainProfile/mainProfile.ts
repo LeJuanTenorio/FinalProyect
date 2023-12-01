@@ -93,7 +93,7 @@ class ProfileInfo extends HTMLElement {
           </div>
 
           <div class="friendContainer">
-            <h1>Friends</h1>
+
           </div>
         </section>
 
