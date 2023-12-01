@@ -1,8 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, orderBy, query, getDoc, setDoc, serverTimestamp, addDoc, getDocs, onSnapshot, updateDoc, arrayUnion} from "firebase/firestore";
 import { Series, User, Review} from "../types/dataManage";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth";
-import storage from "./storage";
+import { getAuth,createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth";
+import { getStorage, getDownloadURL, uploadBytes, ref} from "firebase/storage";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBM7MOyoSUmSkRCHOFqk5tVGCGtHjKHPqk",
@@ -17,7 +18,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 export const auth = getAuth(app);
 export const user = auth.currentUser;
-
+const storage = getStorage(app);
 
 export const getSeries = async () => {
   const querySnapshot = await getDocs(collection(db, "SeriesData"));
@@ -251,15 +252,15 @@ const addFavorite = async (userID: any, seriesID: any) => {
   }
 };
 
-const favoriteSeriesID = async () => {
-  try {
-    const userFound = await storage.getUserFromStorage();
-    const favoritesArray = await getFavoritesId(userFound); 
-    console.log("favoritos", favoritesArray);
-  } catch (error) {
-    console.error("Error in series:", error);
-  }
-}
+// const favoriteSeriesID = async () => {
+//   try {
+//     const userFound = await storage.getUserFromStorage();
+//     const favoritesArray = await getFavoritesId(userFound); 
+//     console.log("favoritos", favoritesArray);
+//   } catch (error) {
+//     console.error("Error in series:", error);
+//   }
+// }
 
 export const signUserOut = async () => {
   try {
@@ -293,6 +294,28 @@ const getUsernameById = async (userID:any) => {
   }
 }
 
+const uploadFile = async (file: File) => {
+  const storageRef = ref(storage, file.name);
+  const res = await uploadBytes(storageRef, file);
+  console.log("Se subió la imagen", res);
+}
+
+const getProfilePicture = (imgName: any) => {
+  return getDownloadURL(ref(storage, `${imgName}`))
+  .then((url: string) => {
+    return url;
+  })
+  .catch((error: string) => {
+    console.error(error);
+  });
+}
+
+const getNameProfilePicture = async (id: string) => {
+  const docRef = doc(db, "users", id);
+  const docSnap = await getDoc(docRef);
+  return docSnap.data()?.imgProfile;
+}
+
 
 export default {
   getSeries,
@@ -311,5 +334,8 @@ export default {
   getUserUID,
   addFavorite,
   getUserPic,
-  getUsernameById
+  getUsernameById,
+  getProfilePicture,
+  getNameProfilePicture,
+  uploadFile,
 }
