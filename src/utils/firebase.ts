@@ -4,16 +4,7 @@ import { Series, User, Review} from "../types/dataManage";
 import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth";
 import { getStorage, getDownloadURL, uploadBytes, ref} from "firebase/storage";
 import { Auth, UserCredential, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBM7MOyoSUmSkRCHOFqk5tVGCGtHjKHPqk",
-  authDomain: "sphere-3b8a9.firebaseapp.com",
-  projectId: "sphere-3b8a9",
-  storageBucket: "sphere-3b8a9.appspot.com",
-  messagingSenderId: "1063773883036",
-  appId: "1:1063773883036:web:432e3837d153391335fb59"
-};
+import { firebaseConfig } from "./firebaseConfig";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);

@@ -26,3 +26,12 @@ export interface User {
     password:string;
 }
 
+export enum CommentAttribute{
+    "name" = "name",
+    "comment" = "comment",
+    "serie" = "serie",
+    "poster" = "poster",
+    "title" = "title",
+    "idd" = "idd",
+    "uid" = "uid"
+}

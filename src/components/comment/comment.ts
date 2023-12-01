@@ -1,21 +1,10 @@
 import CommentStyle from "./comment.css"
-import { Review } from "../../types/dataManage";
-import Firebase, { getReview } from "../../utils/firebase"
 import { dispatch } from "../../store";
 import { navigate, setSeries, setSeriesID } from "../../store/actions";
 import { Screens } from "../../types/navigation";
 import firebase from "../../utils/firebase";
 import { posterAttribute } from "../poster/poster";
-
-export enum CommentAttribute{
-    "name" = "name",
-    "comment" = "comment",
-    "serie" = "serie",
-    "poster" = "poster",
-    "title" = "title",
-    "idd" = "idd",
-    "uid" = "uid"
-}
+import { CommentAttribute } from "../../types/dataManage";
 
 class Comment extends HTMLElement{
 

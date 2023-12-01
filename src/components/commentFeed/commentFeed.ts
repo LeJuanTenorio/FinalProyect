@@ -1,7 +1,7 @@
 import CommentFeedStyle from "./commentFeed.css"
 import Firebase, { getReview, } from "../../utils/firebase"
 import { Review } from "../../types/dataManage";
-import Comment, {CommentAttribute} from "../comment/comment";
+import { CommentAttribute } from "../../types/dataManage";
 import { addObserver } from "../../store";
 
 
