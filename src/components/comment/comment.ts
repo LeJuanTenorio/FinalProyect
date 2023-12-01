@@ -5,7 +5,7 @@ import { dispatch } from "../../store";
 import { navigate, setSeries, setSeriesID } from "../../store/actions";
 import { Screens } from "../../types/navigation";
 import firebase from "../../utils/firebase";
-
+import { posterAttribute } from "../poster/poster";
 
 export enum CommentAttribute{
     "name" = "name",
@@ -130,9 +130,9 @@ class Comment extends HTMLElement{
 
             commentsContainer.appendChild(commentAndSeries)
 
-            const posterImage = this.ownerDocument.createElement('img');
+            const posterImage = this.ownerDocument.createElement('my-poster');
             posterImage.classList.add('poster');
-            posterImage.src = `${this.poster}`;
+            posterImage.setAttribute(posterAttribute.poster, `${this.poster}`)
             posterImage.addEventListener("click", () => {
                 this.seriesPageClick(this.serie);
             });

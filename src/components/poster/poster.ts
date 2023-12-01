@@ -7,7 +7,6 @@ import { Screens } from "../../types/navigation";
 
 
 export enum posterAttribute{
-
     "serie" = "serie",
     "poster" = "poster",
     "idd" = "idd"
