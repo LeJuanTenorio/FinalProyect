@@ -1,6 +1,6 @@
 import style from "./profilePic.css"
 import { dispatch } from "../../store";
-import { navigate, setSeries, setSeriesID } from "../../store/actions";
+import { navigate, setSeries, setSeriesID, setViewProfile } from "../../store/actions";
 import { Screens } from "../../types/navigation";
 import { appState } from "../../store";
 import firebase from "../../utils/firebase";
@@ -62,7 +62,8 @@ class profilePic extends HTMLElement{
             profilePic.classList.add('profilePic')
             profilePic.src = `${this.src}`
             profilePic.addEventListener("click", () => {
-                console.log(this.idd);
+                dispatch(setViewProfile(`${this.idd}`));
+                dispatch(navigate(Screens.PROFILE))
             });
             
             this.shadowRoot?.appendChild(profilePic);

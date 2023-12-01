@@ -3,6 +3,7 @@ import { getFirestore, collection, doc, orderBy, query, getDoc, setDoc, serverTi
 import { Series, User, Review} from "../types/dataManage";
 import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth";
 import { getStorage, getDownloadURL, uploadBytes, ref} from "firebase/storage";
+import { Auth, UserCredential, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
 
 
 const firebaseConfig = {
@@ -252,6 +253,7 @@ const addFavorite = async (userID: any, seriesID: any) => {
   }
 };
 
+
 // const favoriteSeriesID = async () => {
 //   try {
 //     const userFound = await storage.getUserFromStorage();
@@ -319,6 +321,18 @@ const getNameProfilePicture = async (id: string) => {
 }
 
 
+const updatePasswordNow = async (user: any, newPassword: string) => {
+  const credentials = EmailAuthProvider.credential(user.email, user.currentPassword);
+  try {
+    await reauthenticateWithCredential(user, credentials);
+    await updatePassword(user, newPassword);
+    console.log("Password updated successfully!");
+  } catch (error) {
+    console.error("Error updating password:", error);
+    throw error; 
+  }
+}
+
 export default {
   getSeries,
   getSerie, 
@@ -340,4 +354,5 @@ export default {
   getProfilePicture,
   getNameProfilePicture,
   uploadFile,
+  updatePasswordNow,
 }

@@ -6,6 +6,7 @@ import storage  from "../../utils/storage";
 import { appState } from "../../store";
 import { posterAttribute } from "../poster/poster";
 import firebase from "../../utils/firebase";
+import { user } from "../../utils/firebase";
 
 const formPost = {
     name:"",
@@ -25,13 +26,16 @@ class ConfigInfo extends HTMLElement {
 
   }
 
-  connectedCallback() {
+
+connectedCallback() {
     this.render();
   }
 
-  changePassword(e:any){
+changePassword(e:any){
     formPost.password = e.target.value;
     console.log(e.target.value)
+    console.log(appState.user)
+    //firebase.updatePasswordNow(user,e.target.value)
 }
 
 changeUsername(e:any){
@@ -42,7 +46,6 @@ changeUsername(e:any){
 changeImage(e:any){
     formPost.Image = e.target.value;
     console.log("IMAGE" + e.target.value)
-    console.log()
 }
 
 upload(e:any){
@@ -90,14 +93,10 @@ upload(e:any){
         formElement.appendChild(usernameInput);
 
         const ImageInput = this.ownerDocument.createElement('input');
-        ImageInput.classList.add('test');
-        ImageInput.type = 'file';
-        ImageInput.placeholder = 'filehere';
-        ImageInput.addEventListener("change", () => {
-            const file = ImageInput.files?.[0];
-            console.log("THIS IS FILE" + file) 
-            if(file) firebase.uploadFile(file);
-        })
+        ImageInput.classList.add('img');
+        ImageInput.type = 'input';
+        ImageInput.placeholder = 'imageHere';
+        ImageInput.addEventListener("change", this.changeImage)
         formElement.appendChild(ImageInput);
 
         const passwordInput = this.ownerDocument.createElement('input');

@@ -5,6 +5,12 @@ import Firebase from "../../utils/firebase"
 import storage  from "../../utils/storage";
 import { appState } from "../../store";
 import { posterAttribute } from "../poster/poster";
+import firebase from "../../utils/firebase";
+
+const userData = {
+    pic: {},  
+    name: "",
+  };
 
 class ProfileInfo extends HTMLElement {
 
@@ -20,6 +26,30 @@ class ProfileInfo extends HTMLElement {
   connectedCallback() {
     this.render();
     this.renderFavorites();
+  }
+
+  async getUserName(){
+    const username = await firebase.getUsernameById(appState.user)
+    userData.name = username
+    console.log("USERRR NAMEMMEEMEM", username)
+    return username
+  }
+
+  async getUserPic(){
+    try{
+    const pic = await firebase.getUserPic(appState.user)
+    console.log("ESTE SSSSSSSSSSSSS", pic)
+    return pic
+     } 
+     catch{}
+  }
+
+  async setUserPic(){
+    const pic = await this.getUserPic()
+    if(pic){
+      userData.pic = pic
+    }
+    console.log("PICCC", pic)
   }
 
   renderFavorites = async () => {
@@ -45,6 +75,10 @@ class ProfileInfo extends HTMLElement {
     if (this.shadowRoot) {
       this.shadowRoot.innerHTML = `
         <section class="container">
+
+          <div class="profileContainer">
+            
+          </div>
 
           <div class="favoriteContainer">
             <h1>Favorite Shows</h1>
