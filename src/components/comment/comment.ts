@@ -86,7 +86,7 @@ class Comment extends HTMLElement{
             </style>
             `
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-            const commentsContainer = this.ownerDocument.createElement('div');
+            const commentsContainer = this.ownerDocument.createElement('article');
             commentsContainer.setAttribute('class','comments-container')
 
             const picAndName = this.ownerDocument.createElement('div')

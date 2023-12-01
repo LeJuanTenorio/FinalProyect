@@ -2,8 +2,6 @@ import style from "./profilePic.css"
 import { dispatch } from "../../store";
 import { navigate, setSeries, setSeriesID, setViewProfile } from "../../store/actions";
 import { Screens } from "../../types/navigation";
-import { appState } from "../../store";
-import firebase from "../../utils/firebase";
 
 export enum picAttributes{
     "name" = "name",

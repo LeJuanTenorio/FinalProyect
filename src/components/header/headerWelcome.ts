@@ -41,7 +41,7 @@ class Header extends HTMLElement{
     async getUserName(){
         const username = await firebase.getUsernameById(appState.user)
         userData.name = username
-        console.log("USERRR NAMEMMEEMEM", username)
+
         return username
       }
 

@@ -35,3 +35,9 @@ export enum CommentAttribute{
     "idd" = "idd",
     "uid" = "uid"
 }
+
+export enum picAttributes{
+    "name" = "name",
+    "src" = "src",
+    "idd" = "idd"
+}

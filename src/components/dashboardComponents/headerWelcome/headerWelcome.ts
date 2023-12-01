@@ -1,7 +1,7 @@
 import style from "./headerWelcome.css"
 import firebase, { user } from "../../../utils/firebase";
 import { appState } from "../../../store";
-import { picAttributes } from "../../profilePic/profilePic";
+import { picAttributes } from "../../../types/dataManage";
 
 const userData = {
     pic: {},  
