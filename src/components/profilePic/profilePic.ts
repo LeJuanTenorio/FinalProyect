@@ -61,7 +61,10 @@ class profilePic extends HTMLElement{
             const profilePic = this.ownerDocument.createElement('img');
             profilePic.classList.add('profilePic')
             profilePic.src = `${this.src}`
-
+            profilePic.addEventListener("click", () => {
+                console.log(this.idd);
+            });
+            
             this.shadowRoot?.appendChild(profilePic);
         }}
 }

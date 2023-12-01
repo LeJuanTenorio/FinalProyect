@@ -14,6 +14,7 @@ export interface Review {
     serie: string;
     poster: string;
     title: string;
+    userID: string;
 }
 
 export interface User {

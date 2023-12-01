@@ -62,7 +62,7 @@ export const getUsers = async () => {
 const getReviewsLoop = (cb: (docs: Review[]) => void) => {
   const queryReviews = query(
     collection(db, "reviews"),
-    orderBy("timestamp", "desc") // Replace "timestamp" with the field you want to order by
+    orderBy("timestamp", "desc")
   );
 
   onSnapshot(queryReviews, (collection) => {
@@ -315,7 +315,7 @@ const getProfilePicture = (imgName: any) => {
 const getNameProfilePicture = async (id: string) => {
   const docRef = doc(db, "users", id);
   const docSnap = await getDoc(docRef);
-  return docSnap.data()?.imgProfile;
+  return docSnap.data()?.pic;
 }
 
 

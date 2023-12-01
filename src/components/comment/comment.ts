@@ -4,6 +4,7 @@ import Firebase, { getReview } from "../../utils/firebase"
 import { dispatch } from "../../store";
 import { navigate, setSeries, setSeriesID } from "../../store/actions";
 import { Screens } from "../../types/navigation";
+import firebase from "../../utils/firebase";
 
 
 export enum CommentAttribute{
@@ -74,6 +75,15 @@ class Comment extends HTMLElement{
         this.render();
     }
 
+    async getPic(){
+        try{
+            const picName = await firebase.getNameProfilePicture(`${this.uid}`)
+            console.log("picName",picName)
+        }
+        catch{
+        }
+    }
+
     async render(){
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
@@ -85,13 +95,24 @@ class Comment extends HTMLElement{
             const commentsContainer = this.ownerDocument.createElement('div');
             commentsContainer.setAttribute('class','comments-container')
 
+            const picAndPoster = this.ownerDocument.createElement('div')
+            picAndPoster.setAttribute('class','picAndPoster-container')
+            
+            const profilePic = this.ownerDocument.createElement('profile-pic')
+            profilePic.setAttribute('class','profilePic')
+            profilePic.setAttribute('src',`${this.idd}`)
+            profilePic.setAttribute('idd',`${this.uid}`)
+            picAndPoster.appendChild(profilePic);
+
             const posterImage = this.ownerDocument.createElement('img');
             posterImage.classList.add('poster');
             posterImage.src = `${this.poster}`;
             posterImage.addEventListener("click", () => {
                 this.seriesPageClick(this.serie);
             });
-            commentsContainer.appendChild(posterImage);
+            picAndPoster.appendChild(posterImage);
+            
+            commentsContainer.appendChild(picAndPoster)
 
             const commentParagraph = this.ownerDocument.createElement('p');
             commentParagraph.innerText = `${this.comment}`
