@@ -100,14 +100,35 @@ class Comment extends HTMLElement{
             const commentsContainer = this.ownerDocument.createElement('div');
             commentsContainer.setAttribute('class','comments-container')
 
-            const picAndPoster = this.ownerDocument.createElement('div')
-            picAndPoster.setAttribute('class','picAndPoster-container')
+            const picAndName = this.ownerDocument.createElement('div')
+            picAndName.setAttribute('class','picAndName-container')
             
             const profilePic = this.ownerDocument.createElement('profile-pic')
             profilePic.setAttribute('class','profilePic')
             profilePic.setAttribute('src',`${this.idd}`)
             profilePic.setAttribute('idd',`${this.uid}`)
-            picAndPoster.appendChild(profilePic);
+            picAndName.appendChild(profilePic);
+
+            const name = this.ownerDocument.createElement('p')
+            name.setAttribute('class','name')
+            name.innerText = `${this.name}`
+            picAndName.appendChild(name);
+
+            commentsContainer.appendChild(picAndName)
+
+            const commentAndSeries = this.ownerDocument.createElement('div')
+            commentAndSeries.setAttribute('class', 'commentAndSeries')
+
+            const seriesName = this.ownerDocument.createElement('h1')
+            seriesName.setAttribute('class','seriesName')
+            seriesName.innerText = `${this.serie}`
+            commentAndSeries.appendChild(seriesName)
+
+            const commentParagraph = this.ownerDocument.createElement('p');
+            commentParagraph.innerText = `${this.comment}`
+            commentAndSeries.appendChild(commentParagraph);
+
+            commentsContainer.appendChild(commentAndSeries)
 
             const posterImage = this.ownerDocument.createElement('img');
             posterImage.classList.add('poster');
@@ -115,14 +136,9 @@ class Comment extends HTMLElement{
             posterImage.addEventListener("click", () => {
                 this.seriesPageClick(this.serie);
             });
-            picAndPoster.appendChild(posterImage);
+            commentsContainer.appendChild(posterImage)
             
-            commentsContainer.appendChild(picAndPoster)
-
-            const commentParagraph = this.ownerDocument.createElement('p');
-            commentParagraph.innerText = `${this.comment}`
-            commentsContainer.appendChild(commentParagraph);
-
+ 
             this.shadowRoot?.appendChild(commentsContainer);
         }}
 }
