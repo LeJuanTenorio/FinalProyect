@@ -6,6 +6,8 @@ import { reducer } from "./reducer";
 import { Screens } from "../types/navigation";
 import { navigate, setUserCredentials } from "./actions";
 
+export const getUserInfoNow = () => appState.user;
+
 onAuthStateChanged(auth, (user)=>{
   if(user){
     user.uid !== null ? dispatch(setUserCredentials(user.uid)) : '';
