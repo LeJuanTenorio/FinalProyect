@@ -63,6 +63,7 @@ class profilePic extends HTMLElement{
             profilePic.src = `${this.src}`
             profilePic.addEventListener("click", () => {
                 dispatch(setViewProfile(`${this.idd}`));
+                console.log("CILLLLLL", `${this.idd}`)
                 dispatch(navigate(Screens.PROFILE))
             });
             

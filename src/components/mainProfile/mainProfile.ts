@@ -9,7 +9,7 @@ import firebase from "../../utils/firebase";
 
 const userData = {
     pic: {},  
-    name: "",
+    name: {},
   };
 
 class ProfileInfo extends HTMLElement {
@@ -24,15 +24,22 @@ class ProfileInfo extends HTMLElement {
   }
 
   connectedCallback() {
-    this.render();
-    this.renderFavorites();
+    const renderAndDo = async () => {
+        await this.getUserName()
+        this.render();
+        this.renderFavorites();
+    }
+    
+    renderAndDo()
   }
 
   async getUserName(){
-    const username = await firebase.getUsernameById(appState.user)
+    try{const username = appState.viewingProfile
     userData.name = username
     console.log("USERRR NAMEMMEEMEM", username)
-    return username
+    return username}
+    catch{}
+    
   }
 
   async getUserPic(){
@@ -55,7 +62,8 @@ class ProfileInfo extends HTMLElement {
   renderFavorites = async () => {
     const container = this.shadowRoot?.querySelector('.favoriteContainer');
     
-    const userFound = appState.user;
+    const userFound = userData.name;
+    console.log("userrrrrrrr señor", userFound)
     const favoritesArray = await Firebase.getFavoritesId(userFound);
 
     for (const data of favoritesArray) {
