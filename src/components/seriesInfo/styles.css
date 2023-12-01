@@ -7,19 +7,27 @@
 }
 
 .background{
-    position: absolute;
-    width: 90vw;
+    /*width: 90vw;*/
     height: auto;
-    z-index: 0;
+    /*z-index: 0;*/
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: blur(4px);
 }
 
 .midInfo{
     position: relative;
     width: 90vw;
-    height: 85vh;
+    height: 70vh;
     background-color: rgba(35, 52, 63, 0.97);
+    border-top-right-radius: 20px;
     left: 10vw;
-    bottom: -15vh;
+    bottom: -40vh;
     border-top-left-radius: 10px;
 }
 
@@ -29,12 +37,55 @@
     z-index: 2;
 }
 
+.title {
+    width: 30%;
+    height: 30%;
+    margin-top: 10%;
+    margin-left: 40%;
+}
+
 .poster{
-    width: 13vw;
+    width: 20vw;
     height: auto;
+    margin-left: 70px;
+    position: absolute;
+    float: left;
+    margin-bottom: 50%;
 }
 
 .heart{
     width:7%;
-    height:auto
+    height:auto;
+    margin-left: 30%;
+}
+
+.description {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    margin-left: 30%;
+    width: 50%;
+}
+
+.reviewContainer {
+    background-color: #7AA0BC;
+    border-radius: 50%;
+    border: none;
+}
+
+.reviewForm {
+    background-color: 7AA0BC;
+    border-radius: 50%;
+    border: none;
+}
+
+.reviewInput {
+    color: black;
+}
+
+.button {
+    color: #06171F;
+}
+
+.reviewInput {
+    color: #7AA0BC;
 }

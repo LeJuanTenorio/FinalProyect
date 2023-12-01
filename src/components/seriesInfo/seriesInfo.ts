@@ -143,10 +143,10 @@ class SeriesInfo extends HTMLElement {
         titleImg.src = this.logo_title
         upperInfoDiv.appendChild(titleImg);
 
-        const seasonsDiv = this.ownerDocument.createElement('p');
+        /*const seasonsDiv = this.ownerDocument.createElement('p');
         seasonsDiv.classList.add('seasons');
         seasonsDiv.innerText = "Seasons" + this.seasons
-        upperInfoDiv.appendChild(seasonsDiv);
+        upperInfoDiv.appendChild(seasonsDiv);*/
 
         container.appendChild(upperInfoDiv);
 
