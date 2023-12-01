@@ -1,21 +1,10 @@
 import CommentStyle from "./comment.css"
-import { Review } from "../../types/dataManage";
-import Firebase, { getReview } from "../../utils/firebase"
 import { dispatch } from "../../store";
 import { navigate, setSeries, setSeriesID } from "../../store/actions";
 import { Screens } from "../../types/navigation";
 import firebase from "../../utils/firebase";
-
-
-export enum CommentAttribute{
-    "name" = "name",
-    "comment" = "comment",
-    "serie" = "serie",
-    "poster" = "poster",
-    "title" = "title",
-    "idd" = "idd",
-    "uid" = "uid"
-}
+import { posterAttribute } from "../poster/poster";
+import { CommentAttribute } from "../../types/dataManage";
 
 class Comment extends HTMLElement{
 
@@ -130,9 +119,9 @@ class Comment extends HTMLElement{
 
             commentsContainer.appendChild(commentAndSeries)
 
-            const posterImage = this.ownerDocument.createElement('img');
+            const posterImage = this.ownerDocument.createElement('my-poster');
             posterImage.classList.add('poster');
-            posterImage.src = `${this.poster}`;
+            posterImage.setAttribute(posterAttribute.poster, `${this.poster}`)
             posterImage.addEventListener("click", () => {
                 this.seriesPageClick(this.serie);
             });
