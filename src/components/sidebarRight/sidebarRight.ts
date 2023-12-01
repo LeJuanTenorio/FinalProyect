@@ -39,7 +39,6 @@ class SidebarRight extends HTMLElement {
         </style>
       `;
 
-      const trailerContainer = this.shadowRoot.querySelector(".trailerContainer");
       const favoriteContainer = this.shadowRoot.querySelector(".favoriteContainer");
       const friendContainer = this.shadowRoot.querySelector(".friendContainer");
 

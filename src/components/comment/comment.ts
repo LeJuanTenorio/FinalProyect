@@ -12,7 +12,8 @@ export enum CommentAttribute{
     "serie" = "serie",
     "poster" = "poster",
     "title" = "title",
-    "idd" = "idd"
+    "idd" = "idd",
+    "uid" = "uid"
 }
 
 class Comment extends HTMLElement{
@@ -22,6 +23,7 @@ class Comment extends HTMLElement{
     serie:string="";
     poster:string="";
     idd:string="";
+    uid:string="";
 
     static get observedAttributes(){
         const attrs: Record <CommentAttribute,null> = {
@@ -31,6 +33,7 @@ class Comment extends HTMLElement{
             poster: null,
             title: null,
             idd: null,
+            uid: null,
         }
         return Object.keys(attrs);
     }

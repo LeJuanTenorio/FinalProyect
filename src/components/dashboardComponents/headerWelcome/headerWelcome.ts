@@ -1,6 +1,7 @@
 import style from "./headerWelcome.css"
-import firebase from "../../../utils/firebase";
+import firebase, { user } from "../../../utils/firebase";
 import { appState } from "../../../store";
+import { picAttributes } from "../../profilePic/profilePic";
 
 const userData = {
     pic: {},  
@@ -19,9 +20,22 @@ class HeaderWelcome extends HTMLElement{
             await this.setUserPic();
             await this.getUserName();
             this.render();
+            this.createPic()
           };
           fetchDataAndRender();
         this.render();
+    }
+
+    async createPic(){
+      try{
+
+      const container = this.shadowRoot?.querySelector('.pic');
+      const comment = document.createElement('profile-pic');
+      comment.setAttribute(picAttributes.src, userData.pic as string);
+      container?.appendChild(comment);
+      console.log("APENDING"+userData.pic)}
+      
+      catch{}
     }
 
     async getUserName(){
@@ -52,7 +66,7 @@ class HeaderWelcome extends HTMLElement{
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = `
             <header class="header">
-            <user-info img="${userData.pic}"></user-info>
+            <div class="pic"></div>
             
             <div class="containerMessage">
                 <user-info name="${userData.name}" img=""></user-info> 

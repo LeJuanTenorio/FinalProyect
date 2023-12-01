@@ -7,20 +7,20 @@ import firebase from "../../utils/firebase";
 
 export enum picAttributes{
     "name" = "name",
-    "pic" = "pic",
+    "src" = "src",
     "idd" = "idd"
 }
 
 class profilePic extends HTMLElement{
 
     name:string="";
-    pic:any="";
+    src:any="";
     idd:string="";
 
     static get observedAttributes(){
         const attrs: Record <picAttributes,null> = {
             name: null,
-            pic: null,
+            src: null,
             idd: null,
         }
         return Object.keys(attrs);
@@ -44,6 +44,7 @@ class profilePic extends HTMLElement{
         super();
         this.attachShadow({mode:"open"});
     }
+
     
     connectedCallback(){
         this.render()
@@ -59,7 +60,7 @@ class profilePic extends HTMLElement{
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
             const profilePic = this.ownerDocument.createElement('img');
             profilePic.classList.add('profilePic')
-            profilePic.src = `${this.pic}`
+            profilePic.src = `${this.src}`
 
             this.shadowRoot?.appendChild(profilePic);
         }}

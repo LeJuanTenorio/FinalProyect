@@ -95,6 +95,7 @@ upload(e:any){
         ImageInput.placeholder = 'filehere';
         ImageInput.addEventListener("change", () => {
             const file = ImageInput.files?.[0];
+            console.log("THIS IS FILE" + file) 
             if(file) firebase.uploadFile(file);
         })
         formElement.appendChild(ImageInput);

@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, orderBy, query, getDoc, setDoc, serverTimestamp, addDoc, getDocs, onSnapshot, updateDoc, arrayUnion} from "firebase/firestore";
 import { Series, User, Review} from "../types/dataManage";
-import { getAuth,createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth";
+import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth";
 import { getStorage, getDownloadURL, uploadBytes, ref} from "firebase/storage";
 
 
@@ -295,9 +295,11 @@ const getUsernameById = async (userID:any) => {
 }
 
 const uploadFile = async (file: File) => {
-  const storageRef = ref(storage, file.name);
-  const res = await uploadBytes(storageRef, file);
-  console.log("Se subió la imagen", res);
+  const storageRef = ref(storage, `users/${file.name}`);
+  await uploadBytes(storageRef, file).then((snapshot)=>{
+    console.log('upFile')
+  });
+
 }
 
 const getProfilePicture = (imgName: any) => {
